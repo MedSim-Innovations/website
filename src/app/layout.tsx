@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "MedSim Innovations",
@@ -14,7 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <Navbar />
+        <main className="w-full" style={{ minHeight: "calc(100vh - 4rem)" }}>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
