@@ -11,7 +11,7 @@ export function Navbar() {
     const router = useRouter();
 
     return (
-        <nav className="w-full h-16 bg-white flex grid lg:grid-cols-3 grid-cols-2 px-8">
+        <nav className="w-full h-16 bg-gray-100 flex grid lg:grid-cols-3 grid-cols-2 px-8">
             {/* navbar logo and title */}
             <div className="w-full h-full flex flex-row justify-start items-center gap-2 cursor-pointer" onClick={() => router.push("/")}>
                 <Image src={logo} alt="logo" className="w-8 h-8" />

@@ -23,11 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className="antialiased flex flex-col">
         <Navbar />
-        <main className="w-full" style={{ minHeight: "calc(100vh - 4rem)" }}>
+        <div className="flex-1">
           {children}
-        </main>
+        </div>
         <Footer />
       </body>
     </html>
