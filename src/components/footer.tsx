@@ -1,6 +1,6 @@
-export function Footer() {
+export default function Footer() {
     return (
-        <div className="w-full h-32 bg-gray-100">
+        <div className="w-full h-full">
 
         </div>
     )
