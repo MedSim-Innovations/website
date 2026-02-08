@@ -7,7 +7,6 @@ import Form from "next/form";
 
 // Images
 import mainImg from "@/public/home/main.jpg";
-import newspaperImg from "@/public/home/newspaper.jpg";
 
 // Icons
 import faBoxesStacked from "@/public/icons/boxes-stacked-solid-full.svg";
@@ -25,7 +24,9 @@ export default function Home() {
   return (
     <AppLayout>
       <div className="flex flex-col xl:flex-row">
+        {/* Left-Side */}
         <div className="w-full xl:w-2/3 h-auto flex flex-col">
+          {/* Left-Side Top-Container */}
           <div className="w-full h-3/5 p-4 pb-2">
             <div className="relative w-full h-full rounded-lg">
               <Image src={mainImg} alt="mainImg" objectFit="fill" className="w-full h-full min-h-100 max-h-140 object-cover rounded-lg" />
@@ -42,6 +43,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Left-Side Bottom-Container (2/5) */}
           <div className="w-full h-auto min-h-2/5 p-4 pt-2">
             <div className="w-full h-full bg-linear-to-r from-amber-400 to-amber-200 flex flex-col rounded-lg">
               <div className="w-full flex justify-center items-center p-4">
@@ -62,8 +64,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+        
+        {/* Right-Side */}
         <div className="w-full xl:w-1/3 h-auto flex flex-col">
+          {/* Right-Side Top-Container */}
           <div className="w-full h-auto p-4">
             <div className="w-full h-full bg-linear-to-br from-orange-300 to-purple-400 flex flex-col rounded-lg">
               <div className="w-full bg-black/50 rounded-t-lg p-4 flex justify-center items-center">
@@ -91,6 +95,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Right-Side Bottom-Container */}
           <div className="w-full h-full p-4">
             <div className="w-full h-full bg-white flex flex-col rounded-lg">
               <div className="w-full h-auto p-4 flex justify-center items-center">

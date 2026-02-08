@@ -1,8 +1,0 @@
-services:
-  medsim-innovations-website:
-    build:
-      context: ../../
-      dockerfile: docker/staging/Dockerfile
-    image: medsim-innovations-website
-    ports:
-      - "3002:3000"
