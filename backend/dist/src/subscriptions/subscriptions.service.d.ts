@@ -1,0 +1,10 @@
+import { PrismaService } from '../prisma.service';
+export declare class SubscriptionsService {
+    private prisma;
+    constructor(prisma: PrismaService);
+    subscribe(email: string, name: string): Promise<{
+        email: string;
+        name: string;
+        id: number;
+    }>;
+}
