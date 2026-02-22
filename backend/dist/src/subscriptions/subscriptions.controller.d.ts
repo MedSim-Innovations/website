@@ -4,8 +4,8 @@ export declare class SubscriptionsController {
     private readonly subscriptionsService;
     constructor(subscriptionsService: SubscriptionsService);
     subscribe(body: SubscribeDto): Promise<{
+        id: number;
         email: string;
         name: string;
-        id: number;
     }>;
 }
