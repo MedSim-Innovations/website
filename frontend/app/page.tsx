@@ -65,7 +65,7 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <div className="bg-gray-100 min-h-screen mt-12 flex flex-col">
+      <div className="min-h-screen mt-14 flex flex-col pb-4">
 
         {/* top content - image */}
         <div className="relative h-[28rem] sm:h-[32rem] lg:h-[40rem]">
@@ -81,8 +81,8 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3">
 
           {/* Why Choose Us */}
-          <div className="lg:col-span-2 bg-gradient-to-r from-amber-400 to-amber-100">
-            <div className="flex justify-center items-center border-b py-4">
+          <div className="lg:col-span-2 md:bg-gradient-to-r bg-gradient-to-b from-amber-400 to-amber-100">
+            <div className="flex justify-center items-center py-4">
               <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
                 why choose us?
               </h2>
@@ -100,8 +100,8 @@ export default function Home() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:col-span-1 bg-gradient-to-r lg:border-l from-pink-200 to-sky-300">
-            <div className="flex justify-center items-center border-b py-4">
+          <div className="lg:col-span-1 bg-gradient-to-r from-pink-200 to-sky-300 py-2">
+            <div className="flex justify-center items-center py-4">
               <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
                 stay in the loop
               </h2>
@@ -112,14 +112,14 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col justify-center items-center gap-2 py-4 px-8 max-w-2xl mx-auto w-full">
-              <input type="email" placeholder="Email: example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-white p-2 rounded-lg w-full text-black" />
+              <input type="email" placeholder="Email: example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-white p-2 rounded-lg w-full text-black shadow-sm" />
               
-              <input type="text" placeholder="Name: John Doe" value={name} onChange={(e) => setName(e.target.value)} className="bg-white p-2 rounded-lg w-full text-black" />
+              <input type="text" placeholder="Name: John Doe" value={name} onChange={(e) => setName(e.target.value)} className="bg-white p-2 rounded-lg w-full text-black shadow-sm" />
               
               {status === "error" && <p className="text-red-600 flex justify-center items-center text-sm font-serif w-full">{errorMsg}</p>}
               {status === "success" && <p className="text-green-700 flex justify-center items-center text-sm font-serif w-full">You're subscribed!</p>}
 
-              <button onClick={handleSubscribe} disabled={status === "loading"} className="bg-green-500 hover:bg-green-600 font-bold text-white text-md font-serif italic capitalize w-full p-2 mt-2 rounded-lg cursor-pointer disabled:opacity-50">
+              <button onClick={handleSubscribe} disabled={status === "loading"} className="bg-green-500 hover:bg-green-600 font-bold text-white text-md font-serif italic capitalize w-full p-2 mt-2 rounded-lg cursor-pointer disabled:opacity-50 shadow-sm">
                 {status === "loading" ? "subscribing..." : "subscribe"}
               </button>
             </div>

@@ -34,8 +34,8 @@ export default function Navbar() {
           <Link
             key={i}
             href={item.link}
-            className={`text-sm text-black font-serif capitalize transition-all hover:bg-black/10 px-2 py-1 rounded-sm ${
-              pathname === item.link ? "bg-black shadow-md text-white font-bold" : ""
+            className={`text-sm text-black font-serif capitalize transition-all px-2 py-1 rounded-sm ${
+              pathname === item.link ? "bg-black shadow-md text-white font-bold" : "hover:bg-black/10"
             }`}
           >
             {item.title}
