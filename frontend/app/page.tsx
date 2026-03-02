@@ -32,7 +32,8 @@ export default function Home() {
   async function handleSubscribe() {
     if (!email || !name) {
       setStatus("error");
-      setErrorMsg("Please fill in both fields.");
+      setErrorMsg("Please fill in both fields");
+      setTimeout(() => setStatus("idle"), 3000);
       return;
     }
 
@@ -48,7 +49,8 @@ export default function Home() {
 
       if (res.status === 409) {
         setStatus("error");
-        setErrorMsg("This email is already subscribed.");
+        setErrorMsg("This email is already subscribed!");
+        setTimeout(() => setStatus("idle"), 3000);
         return;
       }
 
@@ -57,15 +59,17 @@ export default function Home() {
       setStatus("success");
       setEmail("");
       setName("");
+      setTimeout(() => setStatus("idle"), 3000);
     } catch {
       setStatus("error");
-      setErrorMsg("Something went wrong. Please try again.");
+      setErrorMsg("Something went wrong. Please try again!");
+      setTimeout(() => setStatus("idle"), 3000);
     }
   }
 
   return (
     <AppLayout>
-      <div className="min-h-screen mt-14 flex flex-col pb-4">
+      <div className="min-h-screen mt-14 flex flex-col">
 
         {/* top content - image */}
         <div className="relative h-[28rem] sm:h-[32rem] lg:h-[40rem]">
@@ -112,14 +116,14 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col justify-center items-center gap-2 py-4 px-8 max-w-2xl mx-auto w-full">
-              <input type="email" placeholder="Email: example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="bg-white p-2 rounded-lg w-full text-black shadow-sm" />
+              <input type="email" placeholder="Email: example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition" />
               
-              <input type="text" placeholder="Name: John Doe" value={name} onChange={(e) => setName(e.target.value)} className="bg-white p-2 rounded-lg w-full text-black shadow-sm" />
+              <input type="text" placeholder="Name: John Doe" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition" />
               
-              {status === "error" && <p className="text-red-600 flex justify-center items-center text-sm font-serif w-full">{errorMsg}</p>}
-              {status === "success" && <p className="text-green-700 flex justify-center items-center text-sm font-serif w-full">You're subscribed!</p>}
+              {status === "error" && <p className="bg-red-600 px-4 py-1 rounded-lg text-white flex justify-center items-center text-sm font-serif w-full">{errorMsg}</p>}
+              {status === "success" && <p className="bg-green-600 px-4 py-1 rounded-lg text-white flex justify-center items-center text-sm font-serif w-full">You're subscribed!</p>}
 
-              <button onClick={handleSubscribe} disabled={status === "loading"} className="bg-green-500 hover:bg-green-600 font-bold text-white text-md font-serif italic capitalize w-full p-2 mt-2 rounded-lg cursor-pointer disabled:opacity-50 shadow-sm">
+              <button onClick={handleSubscribe} disabled={status === "loading"} className="bg-black hover:bg-black/80 font-bold text-white text-md font-serif italic capitalize w-full p-2 mt-2 rounded-lg cursor-pointer disabled:opacity-50 shadow-sm">
                 {status === "loading" ? "subscribing..." : "subscribe"}
               </button>
             </div>

@@ -31,5 +31,8 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get subscriptions(): Prisma.subscriptionsDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    get contact_messages(): Prisma.contact_messagesDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;

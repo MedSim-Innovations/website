@@ -5,8 +5,11 @@ import { AppService } from './app.service';
 // Subscriptions
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 
+// Contact
+import { ContactMessagesModule } from './contact/contact_messages.module';
+
 @Module({
-  imports: [SubscriptionsModule],
+  imports: [SubscriptionsModule, ContactMessagesModule],
   controllers: [AppController],
   providers: [AppService],
 })

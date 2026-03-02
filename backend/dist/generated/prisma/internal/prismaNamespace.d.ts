@@ -158,6 +158,7 @@ export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
     readonly subscriptions: "subscriptions";
+    readonly contact_messages: "contact_messages";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -170,7 +171,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "subscriptions";
+        modelProps: "subscriptions" | "contact_messages";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -248,6 +249,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        contact_messages: {
+            payload: Prisma.$contact_messagesPayload<ExtArgs>;
+            fields: Prisma.contact_messagesFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.contact_messagesFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.contact_messagesFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>;
+                };
+                findFirst: {
+                    args: Prisma.contact_messagesFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.contact_messagesFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>;
+                };
+                findMany: {
+                    args: Prisma.contact_messagesFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>[];
+                };
+                create: {
+                    args: Prisma.contact_messagesCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>;
+                };
+                createMany: {
+                    args: Prisma.contact_messagesCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.contact_messagesCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>[];
+                };
+                delete: {
+                    args: Prisma.contact_messagesDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>;
+                };
+                update: {
+                    args: Prisma.contact_messagesUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.contact_messagesDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.contact_messagesUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.contact_messagesUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>[];
+                };
+                upsert: {
+                    args: Prisma.contact_messagesUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$contact_messagesPayload>;
+                };
+                aggregate: {
+                    args: Prisma.Contact_messagesAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateContact_messages>;
+                };
+                groupBy: {
+                    args: Prisma.contact_messagesGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.Contact_messagesGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.contact_messagesCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.Contact_messagesCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -285,6 +360,15 @@ export declare const SubscriptionsScalarFieldEnum: {
     readonly name: "name";
 };
 export type SubscriptionsScalarFieldEnum = (typeof SubscriptionsScalarFieldEnum)[keyof typeof SubscriptionsScalarFieldEnum];
+export declare const Contact_messagesScalarFieldEnum: {
+    readonly id: "id";
+    readonly name: "name";
+    readonly email: "email";
+    readonly phone: "phone";
+    readonly subject: "subject";
+    readonly message: "message";
+};
+export type Contact_messagesScalarFieldEnum = (typeof Contact_messagesScalarFieldEnum)[keyof typeof Contact_messagesScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: "asc";
     readonly desc: "desc";
@@ -295,6 +379,11 @@ export declare const QueryMode: {
     readonly insensitive: "insensitive";
 };
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
+export declare const NullsOrder: {
+    readonly first: "first";
+    readonly last: "last";
+};
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>;
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>;
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>;
@@ -326,6 +415,7 @@ export type PrismaClientOptions = ({
 };
 export type GlobalOmitConfig = {
     subscriptions?: Prisma.subscriptionsOmit;
+    contact_messages?: Prisma.contact_messagesOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {
