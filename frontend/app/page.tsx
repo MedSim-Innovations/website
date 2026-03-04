@@ -104,7 +104,7 @@ export default function Home() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:col-span-1 bg-gradient-to-r from-pink-200 to-sky-300 py-2">
+          <div className="lg:col-span-1 bg-gradient-to-r from-pink-300 to-sky-300 py-2">
             <div className="flex justify-center items-center py-4">
               <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
                 stay in the loop

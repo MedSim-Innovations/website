@@ -135,7 +135,7 @@ export default function Contact() {
         </div>
 
         {/* Right — Contact Form */}
-        <div className="xl:w-1/3 bg-gradient-to-b from-teal-200 to-amber-200 flex flex-col justify-start items-center p-8 max-xl:py-18 gap-6">
+        <div className="xl:w-1/3 bg-gradient-to-b from-teal-300 to-amber-300 flex flex-col justify-start items-center p-8 max-xl:py-18 gap-6">
           <div className="w-full h-full flex flex-col max-w-2xl">
             <h3 className="text-4xl font-serif font-bold italic capitalize text-black text-center mb-1">
               send a message
