@@ -43,7 +43,7 @@ export default function About() {
             <h2 className="text-4xl capitalize text-black font-serif font-bold italic text-center">background</h2>
           </div>
 
-          <div className="w-full flex flex-col justify-center items-center p-12 py-18 bg-sky-50 gap-12">
+          <div className="w-full flex flex-col justify-center items-center p-12 py-18 hover:bg-sky-50 gap-12">
             <p className="text-black font-serif text-lg text-center max-w-6xl">At MedSim Innovations, we are committed to enhancing patient safety and improving medical education through affordable, state-of-the-art simulation technology. Our advanced medical simulators and training equipment allow healthcare professionals to develop their skills in a safe, controlled environment, reducing the risk of real-world errors.</p>
 
             <div className="w-full max-w-6xl border-2 border-black rounded-lg flex flex-col justify-center items-center gap-8 p-8">
@@ -62,7 +62,7 @@ export default function About() {
             <h2 className="text-4xl capitalize text-black font-serif font-bold italic text-center">mission & vision</h2>
           </div>
 
-          <div className="w-full h-auto p-12 py-18 bg-green-50 flex md:flex-row flex-col max-md:gap-4">
+          <div className="w-full h-auto p-12 py-18 hover:bg-green-50 flex md:flex-row flex-col max-md:gap-4">
             <div className="w-full md:border-r p-4 flex flex-col justify-start items-center gap-4">
               <h3 className="text-2xl capitalize text-green-600 font-serif font-bold italic text-center">mission statement</h3>
               <p className="text-black font-serif text-center text-lg max-w-6xl">To revolutionize healthcare education by providing cutting-edge medical simulation technology that empowers healthcare professionals' clinical competency through simulation solutions for high standards of patient care.</p>
@@ -81,7 +81,7 @@ export default function About() {
             <h2 className="text-4xl capitalize text-black font-serif font-bold italic text-center">value pillars</h2>
           </div>
 
-          <div className="w-full h-auto flex flex-row flex-wrap gap-8 justify-center items-center p-12 py-18 bg-orange-50">
+          <div className="w-full h-auto flex flex-row flex-wrap gap-8 justify-center items-center p-12 py-18 hover:bg-orange-50">
             {valuePillars.map((item, i) => (
               <div key={i} className="p-4 border-2 border-black rounded-lg flex flex-col justify-start items-center gap-4 w-100 md:h-52 h-auto hover:scale-105 transition-all duration-300">
                 <Image src={item.icon} alt="icon" className="w-10 h-10" style={{ filter: "invert(50%) sepia(80%) saturate(800%) hue-rotate(360deg) brightness(100%)" }} />
@@ -98,7 +98,7 @@ export default function About() {
             <h2 className="text-4xl capitalize text-black font-serif font-bold italic text-center">our customers</h2>
           </div>
 
-          <div className="w-full h-auto flex bg-purple-50 flex-row flex-wrap gap-12 justify-center items-center p-12 py-18">
+          <div className="w-full h-auto flex hover:bg-purple-50 flex-row flex-wrap gap-12 justify-center items-center p-12 py-18">
             {customers.map((item, i) => (
               <div key={i} className="w-80 md:h-108 h-auto border-2 rounded-lg p-4 flex flex-col hover:scale-105 transition-all duration-300">
                 <div className="w-full h-5/8">

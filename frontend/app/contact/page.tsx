@@ -86,10 +86,10 @@ export default function Contact() {
 
   return (
     <AppLayout>
-      <div className="min-h-screen mt-14 flex flex-col lg:flex-row">
+      <div className="min-h-screen mt-14 flex flex-col xl:flex-row">
 
         {/* Left — Info + Map */}
-        <div className="flex flex-col lg:w-1/2">
+        <div className="flex flex-col xl:w-2/3">
 
           {/* Contact Info */}
           <div className="shrink-0 bg-white flex flex-col">
@@ -98,7 +98,7 @@ export default function Contact() {
                 contact us
               </h2>
 
-              <p className="text-black font-serif text-center text-sm max-w-2xl">
+              <p className="text-black font-serif text-center text-sm">
                 Have questions or want to learn more about our medical simulation solutions? We&apos;re here to help! Reach out to us through any of the following channels:
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function Contact() {
         </div>
 
         {/* Right — Contact Form */}
-        <div className="lg:w-1/2 bg-gradient-to-b from-teal-200 to-amber-200 flex flex-col justify-start items-center p-8 gap-6">
+        <div className="xl:w-1/3 bg-gradient-to-b from-teal-200 to-amber-200 flex flex-col justify-start items-center p-8 max-xl:py-18 gap-6">
           <div className="w-full h-full flex flex-col max-w-2xl">
             <h3 className="text-4xl font-serif font-bold italic capitalize text-black text-center mb-1">
               send a message
