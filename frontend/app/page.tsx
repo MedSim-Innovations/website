@@ -85,7 +85,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3">
 
           {/* Why Choose Us */}
-          <div className="lg:col-span-2 md:bg-gradient-to-r bg-gradient-to-b from-amber-400 to-amber-100">
+          <div className="lg:col-span-2 md:bg-gradient-to-r bg-gradient-to-b from-amber-400 to-amber-100 max-md:py-8">
             <div className="flex justify-center items-center py-4">
               <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
                 why choose us?
@@ -104,7 +104,7 @@ export default function Home() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:col-span-1 bg-gradient-to-r from-pink-300 to-sky-300 py-2">
+          <div className="lg:col-span-1 bg-gradient-to-r from-pink-300 to-sky-300 max-md:py-8 py-2">
             <div className="flex justify-center items-center py-4">
               <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
                 stay in the loop
