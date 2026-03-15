@@ -100,7 +100,7 @@ export default function About() {
 
           <div className="w-full h-auto flex flex-row flex-wrap gap-12 justify-center items-center p-12 py-18 bg-white text-black selection:bg-purple-300 selection:text-black">
             {customers.map((item, i) => (
-              <div key={i} className="w-80 md:h-108 h-auto border-2 rounded-lg p-4 flex flex-col hover:scale-105 transition-all duration-200">
+              <div key={i} className="w-80 md:h-108 h-auto border-2 border-purple-500 rounded-lg p-4 flex flex-col hover:scale-105 transition-all duration-200">
                 <div className="w-full h-5/8">
                   <Image src={item.img} alt={item.title} className="object-cover w-full h-full max-h-80 select-none" />
                 </div>
