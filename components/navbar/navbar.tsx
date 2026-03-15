@@ -58,10 +58,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="z-50 bg-white shadow-md w-screen h-14 fixed top-0 left-0 flex flex-row justify-start items-center px-4 pr-8">
+      <nav className="z-50 bg-white text-black shadow-md w-screen h-14 fixed top-0 left-0 flex flex-row justify-start items-center px-4 pr-8">
         <Link href="/" className="mr-auto flex flex-row gap-2 justify-center items-center">
           <Image src={logo} alt="logo" className="w-8 h-8" />
-          <h1 className="text-lg text-black font-serif">MedSim Innovations</h1>
+          <h1 className="text-lg font-serif">MedSim Innovations</h1>
         </Link>
 
         {/* Desktop menu */}
@@ -70,7 +70,7 @@ export default function Navbar() {
             <Link
               key={i}
               href={item.link}
-              className={`text-sm text-black font-serif capitalize transition-all px-2 py-1 rounded-sm ${
+              className={`text-sm font-serif capitalize transition-all px-2 py-1 rounded-sm ${
                 pathname === item.link ? "bg-black shadow-md text-white font-bold" : "hover:bg-black/10"
               }`}
             >
