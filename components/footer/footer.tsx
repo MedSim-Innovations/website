@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <div className="relative bg-white text-black h-auto flex sm:flex-row flex-col py-4 gap-4 px-8">
+        <div className="relative bg-slate-50 text-black h-auto flex sm:flex-row flex-col py-4 gap-4 px-8">
             <div className="w-auto flex justify-center items-center sm:mr-auto max-sm:mx-auto">
                 <p className="font-serif text-sm text-center">&copy; 2026 <a href="#" className="hover:underline">MedSim Innovations</a> - All Rights Reserved.</p>
             </div>

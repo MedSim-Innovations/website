@@ -14,6 +14,7 @@ import faUsersSolid from "@/public/icons/users-solid-full.svg";
 // Libraries
 import Image from "next/image";
 import { useState } from "react";
+import localFont from 'next/font/local';
 
 // Actions
 import { subscribeUser } from "./actions/subscriptions";
@@ -25,6 +26,13 @@ const whyChooseUs = [
   { icon: faBoxesStackedSolid, title: "quality products", desc: "Offering state-of-the-art products to ensure you receive reliable and durable solutions." },
   { icon: faMicrochipSolid, title: "innovative technology", desc: "We use advanced simulation technology to help you achieve higher standards in training." },
 ];
+
+// Fonts
+
+const indieFlower = localFont({
+  src: '../public/fonts/IndieFlower-Regular.ttf', // Path is relative to the file where localFont is called
+  display: 'swap', // Optional: 'swap' avoids invisible text while loading
+});
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -69,24 +77,19 @@ export default function Home() {
   return (
     <AppLayout>
       <div className="min-h-screen mt-14 flex flex-col">
-
-        {/* top content - image */}
-        <div className="relative h-[28rem] sm:h-[32rem] lg:h-[40rem]">
+        <div className="relative h-112 sm:h-128 lg:h-160">
           <Image src={mainImg} alt="mainImg" fill className="object-cover" />
-          <div className="absolute inset-0 bg-black/30 flex justify-center items-center p-12">
+          <div className="absolute inset-0 bg-black/60 flex justify-center items-center p-12">
             <h2 className="text-white font-serif italic text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize text-center">
-              Every human life deserves a great clinical experience
+              Every human life deserves a <br /> <span className={`bg-linear-to-br from-cyan-300 to-emerald-300 bg-clip-text text-transparent ${indieFlower.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl`}>great clinical experience</span>
             </h2>
           </div>
         </div>
 
-        {/* bottom content */}
         <div className="grid grid-cols-1 lg:grid-cols-3">
-
-          {/* Why Choose Us */}
-          <div className="lg:col-span-2 md:bg-gradient-to-r bg-gradient-to-b from-amber-400 to-amber-100 max-md:py-8">
+          <div className="lg:col-span-2 md:bg-linear-to-r bg-linear-to-b from-amber-400 to-amber-100 max-md:py-8">
             <div className="flex justify-center items-center py-4">
-              <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
+              <h2 className="text-black text-center text-2xl font-serif capitalize font-bold">
                 why choose us?
               </h2>
             </div>
@@ -102,10 +105,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Newsletter */}
-          <div className="lg:col-span-1 bg-gradient-to-r from-pink-300 to-sky-300 max-md:py-8 py-2">
+          <div className="lg:col-span-1 bg-linear-to-r from-pink-300 to-sky-300 max-md:py-8 py-2">
             <div className="flex justify-center items-center py-4">
-              <h2 className="text-black text-center text-2xl font-serif italic capitalize font-bold">
+              <h2 className="text-black text-center text-2xl font-serif capitalize font-bold">
                 stay in the loop
               </h2>
             </div>
