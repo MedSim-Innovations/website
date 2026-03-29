@@ -15,7 +15,7 @@ import { useState, useEffect, useRef } from "react";
 const menuLinks = [
   { title: "home", link: "/" },
   { title: "about", link: "/about" },
-  { title: "products", link: "/products" },
+  // { title: "products", link: "/products" },
   { title: "contact", link: "/contact" },
 ];
 
@@ -58,13 +58,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="z-50 bg-white text-black shadow-md w-screen h-14 fixed top-0 left-0 flex flex-row justify-start items-center px-4 pr-8">
+      <nav className="z-50 bg-white shadow-md text-black w-screen h-14 fixed top-0 left-0 flex flex-row justify-start items-center px-4 pr-8">
         <Link href="/" className="mr-auto flex flex-row gap-2 justify-center items-center">
           <Image src={logo} alt="logo" className="w-8 h-8" />
           <h1 className="text-lg font-serif">MedSim Innovations</h1>
         </Link>
 
-        {/* Desktop menu */}
         <div className="ml-auto flex flex-row items-center gap-6 max-sm:hidden">
           {menuLinks.map((item, i) => (
             <Link
@@ -79,14 +78,12 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Hamburger button */}
         <button
           onClick={() => setMenuOpen((prev) => !prev)}
           className="ml-auto h-full flex justify-center items-center sm:hidden focus:outline-none relative w-6"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
         >
-          {/* Bars icon */}
           <span
             className="absolute inset-0 flex items-center justify-center transition-all duration-300"
             style={{
@@ -97,7 +94,6 @@ export default function Navbar() {
             <Image src={faBarSolid} alt="open menu" className="w-6 h-6" />
           </span>
 
-          {/* X icon */}
           <span
             className="absolute inset-0 flex items-center justify-center transition-all duration-300"
             style={{
@@ -119,7 +115,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Full-screen overlay (backdrop + menu combined) */}
       {rendered && (
         <div
           className="sm:hidden fixed left-0 w-screen z-40 bg-white flex flex-col overflow-hidden"
