@@ -1,38 +1,62 @@
 "use client";
 
-// App Layout
 import AppLayout from "@/components/layouts/app-layout";
-
-// Images
-import mainImg from "@/public/images/home/main.jpg";
-
-// Icons
+import { subscribeUser } from "@/app/actions/subscriptions";
 import faBoxesStackedSolid from "@/public/icons/boxes-stacked-solid-full.svg";
 import faMicrochipSolid from "@/public/icons/microchip-solid-full.svg";
 import faUsersSolid from "@/public/icons/users-solid-full.svg";
-
-// Libraries
+import mainImg from "@/public/images/home/main.jpg";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import localFont from 'next/font/local';
 
-// Actions
-import { subscribeUser } from "./actions/subscriptions";
-
-// Mapped Lists
-
-const whyChooseUs = [
-  { icon: faUsersSolid, title: "expert team", desc: "Our team comprises seasoned experts to guide you through effective, realistic training solutions." },
-  { icon: faBoxesStackedSolid, title: "quality products", desc: "Offering state-of-the-art products to ensure you receive reliable and durable solutions." },
-  { icon: faMicrochipSolid, title: "innovative technology", desc: "We use advanced simulation technology to help you achieve higher standards in training." },
+const signals = [
+  {
+    value: "40+",
+    label: "simulation modules designed for hands-on mastery",
+  },
+  {
+    value: "360",
+    label: "degree training support from planning through deployment",
+  },
+  {
+    value: "3",
+    label: "core institution types served across education and care delivery",
+  },
 ];
 
-// Fonts
+const highlights = [
+  {
+    icon: faUsersSolid,
+    title: "Built with educators and clinicians",
+    desc: "Training journeys are structured around real faculty workflows, learner confidence, and measurable readiness.",
+  },
+  {
+    icon: faBoxesStackedSolid,
+    title: "Scalable solution architecture",
+    desc: "From single-lab setups to broader institutional rollout, the product mix is designed to grow with the program.",
+  },
+  {
+    icon: faMicrochipSolid,
+    title: "Modern simulation tooling",
+    desc: "Contemporary hardware, thoughtful customization, and practical realism produce stronger training outcomes.",
+  },
+];
 
-const indieFlower = localFont({
-  src: '../public/fonts/IndieFlower-Regular.ttf', // Path is relative to the file where localFont is called
-  display: 'swap', // Optional: 'swap' avoids invisible text while loading
-});
+const showcaseCards = [
+  {
+    label: "For nursing programs",
+    title: "Practice that compresses the gap between theory and live care.",
+  },
+  {
+    label: "For medical colleges",
+    title: "Structured exposure to procedures, judgment, and confident repetition.",
+  },
+  {
+    label: "For hospitals",
+    title: "Upskilling programs that support competency, onboarding, and patient safety.",
+  },
+];
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -43,8 +67,8 @@ export default function Home() {
   async function handleSubscribe() {
     if (!email || !name) {
       setStatus("error");
-      setErrorMsg("Please fill in both fields");
-      setTimeout(() => setStatus("idle"), 3000);
+      setErrorMsg("Please fill in both fields.");
+      setTimeout(() => setStatus("idle"), 3200);
       return;
     }
 
@@ -56,8 +80,8 @@ export default function Home() {
 
       if (result.status === 409) {
         setStatus("error");
-        setErrorMsg("This email is already subscribed!");
-        setTimeout(() => setStatus("idle"), 3000);
+        setErrorMsg("This email is already subscribed.");
+        setTimeout(() => setStatus("idle"), 3200);
         return;
       }
 
@@ -66,72 +90,202 @@ export default function Home() {
       setStatus("success");
       setEmail("");
       setName("");
-      setTimeout(() => setStatus("idle"), 3000);
+      setTimeout(() => setStatus("idle"), 3200);
     } catch {
       setStatus("error");
-      setErrorMsg("Something went wrong. Please try again!");
-      setTimeout(() => setStatus("idle"), 3000);
+      setErrorMsg("Something went wrong. Please try again.");
+      setTimeout(() => setStatus("idle"), 3200);
     }
   }
 
   return (
     <AppLayout>
-      <div className="min-h-screen mt-14 flex flex-col">
-        <div className="relative h-112 sm:h-128 lg:h-160">
-          <Image src={mainImg} alt="mainImg" fill className="object-cover" />
-          <div className="absolute inset-0 bg-black/60 flex justify-center items-center p-12">
-            <h2 className="text-white font-serif italic text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize text-center">
-              Every human life deserves a <br /> <span className={`bg-linear-to-br from-cyan-300 to-emerald-300 bg-clip-text text-transparent ${indieFlower.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl`}>great clinical experience</span>
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3">
-          <div className="lg:col-span-2 md:bg-linear-to-r bg-linear-to-b from-amber-400 to-amber-100 max-md:py-8">
-            <div className="flex justify-center items-center py-4">
-              <h2 className="text-black text-center text-2xl font-serif capitalize font-bold">
-                why choose us?
-              </h2>
+      <section className="relative overflow-hidden px-6 pb-16 pt-6 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="relative">
+            <div className="reveal-up">
+              <p className="eyebrow">Simulation-first healthcare training</p>
+            </div>
+            <div className="reveal-up stagger-1 mt-8">
+              <h1 className="section-title max-w-4xl text-white">
+                Modern medical simulation systems for institutions that want{" "}
+                <span className="text-gradient">credibility, energy, and precision.</span>
+              </h1>
+            </div>
+            <div className="reveal-up stagger-2 mt-7 max-w-2xl">
+              <p className="section-copy">
+                MedSim Innovations equips nursing colleges, medical schools, and hospitals with
+                simulation-led environments that look sharp, train hard, and reinforce safer
+                clinical decisions.
+              </p>
             </div>
 
-            <div className="grid grid-cols-3">
-              {whyChooseUs.map((item, i) => (
-                <div key={i} className="col-span-3 md:col-span-1 flex flex-col justify-center items-center p-8 gap-4 hover:scale-105 transition-all duration-300">
-                  <Image src={item.icon} alt="icon" className="w-16 h-16" />
-                  <h3 className="text-black text-center text-lg font-serif font-bold capitalize">{item.title}</h3>
-                  <p className="text-black text-sm font-serif font-normal text-center">{item.desc}</p>
+            <div className="reveal-up stagger-3 mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/contact"
+                className="animated-border inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-semibold text-white"
+              >
+                Start a Conversation
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-4 text-base font-semibold text-slate-100 transition hover:bg-white/10"
+              >
+                Explore Our Approach
+              </Link>
+            </div>
+
+            <div className="reveal-up stagger-4 mt-12 grid gap-4 sm:grid-cols-3">
+              {signals.map((item) => (
+                <div
+                  key={item.value}
+                  className="glass-panel rounded-[1.75rem] border border-white/10 px-5 py-5"
+                >
+                  <p className="font-[var(--font-display)] text-3xl font-semibold tracking-tight text-white">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{item.label}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-1 bg-linear-to-r from-pink-300 to-sky-300 max-md:py-8 py-2">
-            <div className="flex justify-center items-center py-4">
-              <h2 className="text-black text-center text-2xl font-serif capitalize font-bold">
-                stay in the loop
-              </h2>
-            </div>
-
-            <div className="flex justify-center items-center py-4 px-8">
-              <p className="text-black text-sm font-serif text-center">Subscribe for the latest updates and insights, delivered straight to your inbox.</p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-2 py-4 px-8 max-w-2xl mx-auto w-full">
-              <input type="email" placeholder="Email: example@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition" />
-              
-              <input type="text" placeholder="Name: John Doe" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-white border border-gray-200 rounded-lg p-2.5 text-sm text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-black transition" />
-              
-              {status === "error" && <p className="bg-red-600 px-4 py-1 rounded-lg text-white flex justify-center items-center text-sm font-serif w-full">{errorMsg}</p>}
-              {status === "success" && <p className="bg-green-600 px-4 py-1 rounded-lg text-white flex justify-center items-center text-sm font-serif w-full">You're subscribed!</p>}
-
-              <button onClick={handleSubscribe} disabled={status === "loading"} className="bg-black hover:bg-black/80 font-bold text-white text-md font-serif italic capitalize w-full p-2 mt-2 rounded-lg cursor-pointer disabled:opacity-50 shadow-sm">
-                {status === "loading" ? "subscribing..." : "subscribe"}
-              </button>
+          <div className="reveal-up stagger-3">
+            <div className="glass-panel float-slow relative overflow-hidden rounded-[2rem] border border-white/10 p-4">
+              <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cyan-300/20 to-transparent" />
+              <div className="relative h-[520px] overflow-hidden rounded-[1.6rem]">
+                <Image
+                  src={mainImg}
+                  alt="Medical simulation training"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="glass-panel rounded-[1.5rem] border border-white/10 p-5">
+                    <p className="text-sm font-semibold uppercase tracking-[0.26em] text-cyan-200">
+                      Flagship promise
+                    </p>
+                    <p className="mt-3 font-[var(--font-display)] text-2xl font-semibold tracking-tight text-white">
+                      Design training spaces that feel advanced, trustworthy, and immediately
+                      actionable.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
-      </div>
+      </section>
+
+      <section className="px-6 py-16 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
+          {highlights.map((item, index) => (
+            <div
+              key={item.title}
+              className={`glass-panel card-hover reveal-up rounded-[2rem] border border-white/10 p-7 stagger-${index + 1}`}
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-300/12 ring-1 ring-cyan-200/10">
+                <Image src={item.icon} alt={item.title} className="h-7 w-7 brightness-0 invert" />
+              </div>
+              <h2 className="mt-6 font-[var(--font-display)] text-2xl font-semibold tracking-tight text-white">
+                {item.title}
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-300">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-6 py-16 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="reveal-up">
+            <p className="eyebrow">Institution-ready outcomes</p>
+            <h2 className="mt-7 section-title max-w-xl text-white">
+              Training systems shaped around the reality of modern care teams.
+            </h2>
+            <p className="section-copy mt-6 max-w-xl">
+              The site now frames MedSim as a contemporary partner, not a generic catalog. The
+              same positioning carries across colleges, hospitals, and faculty-led programs.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-3">
+            {showcaseCards.map((item, index) => (
+              <div
+                key={item.label}
+                className={`card-hover reveal-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 stagger-${index + 2}`}
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">
+                  {item.label}
+                </p>
+                <p className="mt-5 font-[var(--font-display)] text-2xl font-semibold tracking-tight text-white">
+                  {item.title}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24 pt-12 sm:px-8 lg:px-12">
+        <div className="animated-border mx-auto max-w-7xl rounded-[2.25rem] p-[1px]">
+          <div className="grid rounded-[2.2rem] bg-slate-950/92 p-8 lg:grid-cols-[1fr_0.9fr] lg:p-10">
+            <div className="max-w-2xl">
+              <p className="eyebrow">Stay in the loop</p>
+              <h2 className="mt-7 font-[var(--font-display)] text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                Receive product updates, launch notes, and practical training insights.
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                Keep your team close to what MedSim is building next. The newsletter is short,
+                useful, and relevant to institutions making real purchasing decisions.
+              </p>
+            </div>
+
+            <div className="mt-10 lg:mt-0 lg:pl-10">
+              <div className="rounded-[1.8rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-slate-950/30">
+                <div className="grid gap-4">
+                  <input
+                    type="text"
+                    placeholder="Full name"
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-white/8"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-white/8"
+                  />
+
+                  {status === "error" && (
+                    <p className="rounded-2xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+                      {errorMsg}
+                    </p>
+                  )}
+                  {status === "success" && (
+                    <p className="rounded-2xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100">
+                      You&apos;re subscribed.
+                    </p>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={handleSubscribe}
+                    disabled={status === "loading"}
+                    className="rounded-2xl bg-cyan-300 px-5 py-4 text-base font-semibold text-slate-950 transition hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {status === "loading" ? "Subscribing..." : "Join the newsletter"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </AppLayout>
   );
 }

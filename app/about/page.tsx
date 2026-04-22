@@ -1,134 +1,196 @@
 import AppLayout from "@/components/layouts/app-layout";
-import HospitalsImg from "@/public/images/about/hospitals.jpg";
-import MedicalCollegesImg from "@/public/images/about/medical-colleges.jpg";
-import NursingCollegesImg from "@/public/images/about/nursing-colleges.jpg";
+import faBookOpenSolid from "@/public/icons/book-open-solid-full.svg";
 import faCircleCheckSolid from "@/public/icons/circle-check-solid-full.svg";
 import faGlobeSolid from "@/public/icons/globe-solid-full.svg";
 import faLightbulbSolid from "@/public/icons/lightbulb-solid-full.svg";
 import faScrewdriverWrenchSolid from "@/public/icons/screwdriver-wrench-solid-full.svg";
 import faUsersSolid from "@/public/icons/users-solid-full.svg";
-import faBookOpenSolid from "@/public/icons/book-open-solid-full.svg";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
+import HospitalsImg from "@/public/images/about/hospitals.jpg";
+import MedicalCollegesImg from "@/public/images/about/medical-colleges.jpg";
+import NursingCollegesImg from "@/public/images/about/nursing-colleges.jpg";
+import Image, { StaticImageData } from "next/image";
 
-const valuePillars = [
-  { icon: faLightbulbSolid, title: "Innovation", desc: "Continuous investment in R&D to bring the latest technology to market.", color: "bg-amber-50", border: "border-amber-200", iconFilter: "invert(70%) sepia(80%) saturate(1500%) hue-rotate(5deg)", text: "text-amber-500" },
-  { icon: faScrewdriverWrenchSolid, title: "Customization", desc: "Tailored simulation solutions to meet the specific needs of each client.", color: "bg-blue-50", border: "border-blue-200", iconFilter: "invert(40%) sepia(80%) saturate(800%) hue-rotate(190deg)", text: "text-blue-500" },
-  { icon: faCircleCheckSolid, title: "Quality & Realism", desc: "High standards ensuring simulators offer truly lifelike experiences.", color: "bg-green-50", border: "border-green-200", iconFilter: "invert(50%) sepia(80%) saturate(800%) hue-rotate(100deg)", text: "text-green-500" },
-  { icon: faUsersSolid, title: "Support", desc: "End-to-end service from installation to ongoing maintenance and training.", color: "bg-purple-50", border: "border-purple-200", iconFilter: "invert(40%) sepia(80%) saturate(800%) hue-rotate(240deg)", text: "text-purple-500" },
-  { icon: faGlobeSolid, title: "Global Reach", desc: "A worldwide network of distributors and partners serving clients globally.", color: "bg-cyan-50", border: "border-cyan-200", iconFilter: "invert(50%) sepia(80%) saturate(800%) hue-rotate(160deg)", text: "text-cyan-500" },
-  { icon: faBookOpenSolid, title: "Education", desc: "Bridging theory and clinical practice with curriculum-aligned tools.", color: "bg-rose-50", border: "border-rose-200", iconFilter: "invert(40%) sepia(80%) saturate(1200%) hue-rotate(310deg)", text: "text-rose-500" },
+const pillars = [
+  {
+    icon: faLightbulbSolid,
+    title: "Innovation",
+    desc: "Continuous investment in credible, accessible simulation experiences that match real teaching constraints.",
+  },
+  {
+    icon: faScrewdriverWrenchSolid,
+    title: "Customization",
+    desc: "Programs are adapted to each institution's budget, infrastructure, and learning outcomes.",
+  },
+  {
+    icon: faCircleCheckSolid,
+    title: "Quality and realism",
+    desc: "Hands-on repetition should feel practical enough to improve judgment before learners reach live environments.",
+  },
+  {
+    icon: faUsersSolid,
+    title: "Support",
+    desc: "From planning through rollout, teams get guidance that helps systems stick after purchase.",
+  },
+  {
+    icon: faGlobeSolid,
+    title: "Reach",
+    desc: "The company is positioned to serve institutions that need global standards without luxury-only pricing.",
+  },
+  {
+    icon: faBookOpenSolid,
+    title: "Education-first thinking",
+    desc: "Every solution is tied back to faculty delivery, curriculum alignment, and clinical confidence.",
+  },
 ];
 
-const customers: { title: string; img: StaticImageData; desc: string; text: string; badge: string }[] = [
-  { title: "Nursing Colleges", img: NursingCollegesImg, desc: "Training kits specifically designed for nursing education and practical training.", text: "text-pink-500", badge: "bg-pink-100 text-pink-600" },
-  { title: "Medical Colleges", img: MedicalCollegesImg, desc: "Advanced tools for medical students and residents to enhance hands-on learning.", text: "text-blue-500", badge: "bg-blue-100 text-blue-600" },
-  { title: "Hospitals", img: HospitalsImg, desc: "Supporting professional development and competency assessments for healthcare providers.", text: "text-green-500", badge: "bg-green-100 text-green-600" },
+const customers: { title: string; img: StaticImageData; desc: string }[] = [
+  {
+    title: "Nursing colleges",
+    img: NursingCollegesImg,
+    desc: "Simulation kits that support structured skills labs, safer repetition, and stronger clinical readiness.",
+  },
+  {
+    title: "Medical colleges",
+    img: MedicalCollegesImg,
+    desc: "Advanced training tools for teaching procedures, decision-making, and applied practice under supervision.",
+  },
+  {
+    title: "Hospitals",
+    img: HospitalsImg,
+    desc: "Continuing education environments that support onboarding, competency review, and team preparedness.",
+  },
 ];
 
 export default function About() {
   return (
     <AppLayout>
-      <div className="min-h-screen mt-14 bg-slate-50 font-serif">
-        <section className="bg-white">
-          <div className="bg-linear-to-r from-sky-400 to-cyan-400 px-8 py-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-sky-100 mb-1">Who We Are</p>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">Background</h2>
+      <section className="px-6 pb-16 pt-6 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-white/10 bg-white/[0.03] px-8 py-14 shadow-2xl shadow-slate-950/20 sm:px-12">
+          <div className="reveal-up">
+            <p className="eyebrow">Who we are</p>
           </div>
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="reveal-up stagger-1">
+              <h1 className="section-title max-w-4xl text-white">
+                A simulation partner focused on making{" "}
+                <span className="text-gradient">better clinical judgment more teachable.</span>
+              </h1>
+              <p className="section-copy mt-7 max-w-2xl">
+                MedSim Innovations is built around a practical idea: healthcare training improves
+                when institutions can deliver repeatable, realistic practice without depending on
+                trial-and-error in live settings.
+              </p>
+              <p className="section-copy mt-5 max-w-2xl">
+                The company serves nursing colleges, medical colleges, and hospitals looking for
+                affordable, high-quality simulation systems that still feel contemporary and
+                institution-ready.
+              </p>
+            </div>
 
-          <div className="max-w-5xl mx-auto px-6 py-16 flex flex-col gap-10">
-            <p className="text-slate-600 text-lg text-center leading-relaxed">
-              At <span className="font-bold text-slate-800">MedSim Innovations</span>, we are committed to enhancing patient safety and improving medical education through affordable, state-of-the-art simulation technology. Our advanced simulators allow healthcare professionals to develop skills in a safe, controlled environment, reducing the risk of real-world errors.
+            <div className="glass-panel reveal-up stagger-2 rounded-[2rem] border border-white/10 p-7">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-200">
+                Why simulation matters
+              </p>
+              <p className="mt-5 text-lg leading-8 text-slate-200">
+                Safer learning environments let clinicians build competence before pressure is real.
+              </p>
+              <p className="mt-4 text-base leading-7 text-slate-300">
+                The site positions simulation as a patient-safety and education-quality issue, not
+                just a product category. That is the right framing for institutional buyers.
+              </p>
+              <a
+                href="https://www.who.int/news-room/fact-sheets/detail/patient-safety"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex rounded-full border border-cyan-200/20 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/15"
+              >
+                WHO patient safety reference
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-14 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
+          <div className="glass-panel card-hover reveal-up rounded-[2rem] border border-emerald-300/15 p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">
+              Mission
             </p>
+            <h2 className="mt-5 font-[var(--font-display)] text-3xl font-semibold tracking-tight text-white">
+              Raise clinical competency with advanced simulation technology that feels usable, not theoretical.
+            </h2>
+          </div>
 
-            <div className="rounded-2xl border border-sky-200 bg-sky-50 p-8 flex flex-col gap-5">
-              <h3 className="text-xl font-bold text-sky-600 text-center">Why Simulation-Based Training?</h3>
-              <p className="text-slate-600 text-base text-center leading-relaxed">
-                Medical errors are a significant concern worldwide. According to the{" "}
-                <span className="italic text-slate-700">World Health Organization (WHO)</span>,{" "}
-                <a href="https://www.who.int/news-room/fact-sheets/detail/patient-safety" target="_blank" className="text-sky-600 underline underline-offset-2 hover:text-sky-800 transition-colors">
-                  patient safety incidents rank among the leading causes of death and disability
-                </a>
-                . Many errors stem from insufficient training — all of which can be minimized through hands-on, simulation-based learning.
-              </p>
-              <p className="text-slate-600 text-base text-center leading-relaxed">
-                At <span className="font-bold text-slate-800">MedSim Innovations Pvt. Ltd.</span>, we recognize the urgent need for high-quality, affordable training solutions — especially for nursing colleges and small hospitals in developing countries.
-              </p>
-            </div>
+          <div className="glass-panel card-hover reveal-up stagger-1 rounded-[2rem] border border-amber-300/15 p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-amber-200">
+              Vision
+            </p>
+            <h2 className="mt-5 font-[var(--font-display)] text-3xl font-semibold tracking-tight text-white">
+              Make simulation-based education a standard layer of healthcare training, not an exception.
+            </h2>
+          </div>
+        </div>
+      </section>
 
-            <p className="text-slate-600 text-base text-center leading-relaxed">
-              Beyond simulation technology, we assist institutions in designing affordable simulation labs that meet rigorous educational and compliance standards. Contact us for a detailed discussion — we're here to help you make a difference.
+      <section className="px-6 py-14 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl reveal-up">
+            <p className="eyebrow">Value pillars</p>
+            <h2 className="section-title mt-7 text-white">A modern brand still has to sound operationally credible.</h2>
+            <p className="section-copy mt-6">
+              These pillars keep the messaging grounded in what institutional buyers actually need:
+              reliability, support, realism, and clear educational value.
             </p>
           </div>
-        </section>
 
-        <section className="bg-slate-50">
-          <div className="bg-linear-to-r from-emerald-400 to-teal-400 px-8 py-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-emerald-100 mb-1">Purpose</p>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">Mission & Vision</h2>
-          </div>
-
-          <div className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-2xl border border-emerald-100 p-8 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-500 font-extrabold text-lg">M</div>
-              <h3 className="text-xl font-bold text-emerald-600">Mission Statement</h3>
-              <p className="text-slate-600 text-base leading-relaxed">
-                To revolutionize healthcare education by providing cutting-edge medical simulation technology that empowers healthcare professionals' clinical competency for high standards of patient care.
-              </p>
-            </div>
-            <div className="bg-white rounded-2xl border border-teal-100 p-8 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center text-teal-500 font-extrabold text-lg">V</div>
-              <h3 className="text-xl font-bold text-teal-600">Vision Statement</h3>
-              <p className="text-slate-600 text-base leading-relaxed">
-                A world where simulation-based education is the cornerstone of healthcare training, ensuring better patient outcomes and advancing the quality of healthcare worldwide.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white">
-          <div className="bg-linear-to-r from-orange-400 to-amber-400 px-8 py-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-orange-100 mb-1">What We Stand For</p>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">Value Pillars</h2>
-          </div>
-
-          <div className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {valuePillars.map((item, i) => (
-              <div key={i} className={`rounded-2xl border ${item.border} ${item.color} p-7 flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-200`}>
-                <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shadow-sm">
-                  <Image src={item.icon} alt={item.title} width={24} height={24} style={{ filter: item.iconFilter }} />
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {pillars.map((item, index) => (
+              <div
+                key={item.title}
+                className={`card-hover reveal-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 stagger-${(index % 5) + 1}`}
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/6 ring-1 ring-white/10">
+                  <Image src={item.icon} alt={item.title} className="h-7 w-7 brightness-0 invert" />
                 </div>
-                <h3 className={`text-lg font-bold ${item.text}`}>{item.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="mt-6 font-[var(--font-display)] text-2xl font-semibold tracking-tight text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-slate-300">{item.desc}</p>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="bg-slate-50">
-          <div className="bg-linear-to-r from-violet-400 to-purple-400 px-8 py-10 text-center">
-            <p className="text-xs font-bold uppercase tracking-widest text-violet-100 mb-1">Who We Serve</p>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">Our Customers</h2>
+      <section className="px-6 pb-24 pt-14 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-7xl">
+          <div className="reveal-up mb-10 max-w-3xl">
+            <p className="eyebrow">Who we serve</p>
+            <h2 className="section-title mt-7 text-white">Three buyer groups, one consistent promise: better readiness.</h2>
           </div>
 
-          <div className="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {customers.map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-                <div className="relative h-52 w-full">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {customers.map((item, index) => (
+              <article
+                key={item.title}
+                className={`glass-panel card-hover reveal-up overflow-hidden rounded-[2rem] border border-white/10 stagger-${index + 1}`}
+              >
+                <div className="relative h-72">
                   <Image src={item.img} alt={item.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
                 </div>
-                <div className="p-6 flex flex-col gap-3">
-                  <span className={`self-start text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full ${item.badge}`}>
+                <div className="p-7">
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">
                     {item.title}
-                  </span>
-                  <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                  </p>
+                  <p className="mt-4 text-base leading-7 text-slate-300">{item.desc}</p>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-        </section>
-
-      </div>
+        </div>
+      </section>
     </AppLayout>
   );
 }

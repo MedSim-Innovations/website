@@ -1,29 +1,22 @@
 "use client";
 
-// Images
 import logo from "@/public/images/favicon.png";
-
-// Icons
-import faBarSolid from "@/public/icons/bars-solid-full.svg";
-
-// Libraries
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const menuLinks = [
-  { title: "home", link: "/" },
-  { title: "about", link: "/about" },
-  // { title: "products", link: "/products" },
-  { title: "contact", link: "/contact" },
+  { title: "Home", link: "/" },
+  { title: "About", link: "/about" },
+  { title: "Contact", link: "/contact" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [rendered, setRendered] = useState(false);
-  const [visible, setVisible] = useState(false); // drives the actual CSS transition
+  const [visible, setVisible] = useState(false);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -33,15 +26,13 @@ export default function Navbar() {
   useEffect(() => {
     if (menuOpen) {
       setRendered(true);
-      // Wait two frames: one to mount, one to paint — then trigger transition
       rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = requestAnimationFrame(() => {
-          setVisible(true);
-        });
+        rafRef.current = requestAnimationFrame(() => setVisible(true));
       });
     } else {
-      setVisible(false); // trigger closing transition
+      setVisible(false);
     }
+
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
@@ -49,104 +40,134 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
-
-  const handleTransitionEnd = () => {
-    if (!menuOpen) setRendered(false);
-  };
 
   return (
     <>
-      <nav className="z-50 bg-white shadow-md text-black w-screen h-14 fixed top-0 left-0 flex flex-row justify-start items-center px-4 pr-8">
-        <Link href="/" className="mr-auto flex flex-row gap-2 justify-center items-center">
-          <Image src={logo} alt="logo" className="w-8 h-8" />
-          <h1 className="text-lg font-serif">MedSim Innovations</h1>
-        </Link>
+      <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+        <nav className="mx-auto flex max-w-7xl items-center rounded-full border border-white/10 bg-slate-950/70 px-4 py-3 text-white shadow-2xl shadow-slate-950/20 backdrop-blur-xl sm:px-6">
+          <Link href="/" className="mr-auto flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
+              <Image src={logo} alt="MedSim Innovations logo" className="h-7 w-7" />
+            </div>
+            <div>
+              <p className="font-[var(--font-display)] text-sm font-medium uppercase tracking-[0.28em] text-cyan-200/80">
+                MedSim
+              </p>
+              <p className="font-[var(--font-display)] text-base font-semibold tracking-tight text-white">
+                Innovations
+              </p>
+            </div>
+          </Link>
 
-        <div className="ml-auto flex flex-row items-center gap-6 max-sm:hidden">
-          {menuLinks.map((item, i) => (
-            <Link
-              key={i}
-              href={item.link}
-              className={`text-sm font-serif capitalize transition-all px-2 py-1 rounded-sm ${
-                pathname === item.link ? "bg-black shadow-md text-white font-bold" : "hover:bg-black/10"
-              }`}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </div>
+          <div className="hidden items-center gap-2 md:flex">
+            {menuLinks.map((item) => {
+              const active = pathname === item.link;
 
-        <button
-          onClick={() => setMenuOpen((prev) => !prev)}
-          className="ml-auto h-full flex justify-center items-center sm:hidden focus:outline-none relative w-6"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-        >
-          <span
-            className="absolute inset-0 flex items-center justify-center transition-all duration-300"
-            style={{
-              opacity: visible ? 0 : 1,
-              transform: visible ? "rotate(90deg) scale(0.5)" : "rotate(0deg) scale(1)",
-            }}
+              return (
+                <Link
+                  key={item.link}
+                  href={item.link}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold tracking-wide transition ${
+                    active
+                      ? "bg-white text-slate-950"
+                      : "text-slate-300 hover:bg-white/8 hover:text-white"
+                  }`}
+                >
+                  {item.title}
+                </Link>
+              );
+            })}
+          </div>
+
+          <Link
+            href="/contact"
+            className="animated-border pulse-glow ml-4 hidden rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide text-white md:inline-flex"
           >
-            <Image src={faBarSolid} alt="open menu" className="w-6 h-6" />
-          </span>
+            Book a Demo
+          </Link>
 
-          <span
-            className="absolute inset-0 flex items-center justify-center transition-all duration-300"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "rotate(0deg) scale(1)" : "rotate(-90deg) scale(0.5)",
-            }}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="ml-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </span>
-        </button>
-      </nav>
+            <span className="relative h-4 w-5">
+              <span
+                className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition ${
+                  menuOpen ? "translate-y-[7px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[7px] h-0.5 w-5 rounded-full bg-current transition ${
+                  menuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-[14px] h-0.5 w-5 rounded-full bg-current transition ${
+                  menuOpen ? "-translate-y-[7px] -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
+        </nav>
+      </header>
 
       {rendered && (
         <div
-          className="sm:hidden fixed left-0 w-screen z-40 bg-white flex flex-col overflow-hidden"
+          className="fixed inset-0 z-40 bg-slate-950/70 px-4 pt-24 backdrop-blur-xl md:hidden"
           style={{
-            top: "3.5rem",
-            height: "calc(100vh - 3.5rem)",
             opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(-12px)",
-            transition: "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            transition: "opacity 220ms ease",
           }}
-          onTransitionEnd={handleTransitionEnd}
+          onTransitionEnd={() => {
+            if (!menuOpen) setRendered(false);
+          }}
         >
-          <div className="flex flex-col px-6 pt-6 pb-8 gap-2">
-            {menuLinks.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link}
-                onClick={() => setMenuOpen(false)}
-                className={`w-full text-xl font-serif capitalize px-4 py-4 rounded-md ${
-                  pathname === item.link
-                    ? "bg-black text-white font-bold shadow-md"
-                    : "text-black hover:bg-black/10"
-                }`}
-                style={{
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? "translateY(0)" : "translateY(-10px)",
-                  transition: `opacity 0.3s ease ${i * 60 + 80}ms, transform 0.3s ease ${i * 60 + 80}ms`,
-                }}
-              >
-                {item.title}
-              </Link>
-            ))}
+          <div
+            className="mx-auto flex max-w-7xl flex-col gap-3 rounded-[2rem] border border-white/10 bg-slate-950/90 p-5 shadow-2xl"
+            style={{
+              transform: visible ? "translateY(0)" : "translateY(-10px)",
+              opacity: visible ? 1 : 0,
+              transition: "transform 240ms ease, opacity 240ms ease",
+            }}
+          >
+            {menuLinks.map((item, index) => {
+              const active = pathname === item.link;
+
+              return (
+                <Link
+                  key={item.link}
+                  href={item.link}
+                  onClick={() => setMenuOpen(false)}
+                  className={`rounded-2xl px-4 py-4 text-lg font-semibold transition ${
+                    active
+                      ? "bg-white text-slate-950"
+                      : "bg-white/5 text-slate-100 hover:bg-white/10"
+                  }`}
+                  style={{
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? "translateY(0)" : "translateY(-8px)",
+                    transitionDelay: `${index * 60}ms`,
+                  }}
+                >
+                  {item.title}
+                </Link>
+              );
+            })}
+
+            <Link
+              href="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="rounded-2xl bg-cyan-300 px-4 py-4 text-center text-lg font-semibold text-slate-950"
+            >
+              Book a Demo
+            </Link>
           </div>
         </div>
       )}
