@@ -44,7 +44,7 @@ const whyChooseUs: WhyChooseUsItem[] = [
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
-      <section className="relative min-h-[75vh] shadow-2xl shadow-white/20">
+      <section className="relative min-h-[75vh]">
         <Image
           src={mainImg}
           alt="Medical simulation training"
@@ -83,8 +83,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Intro */}
-      <section className="mx-auto max-w-7xl px-5 py-20 text-center sm:px-8">
+      <section className="mx-auto max-w-7xl px-5 py-12 text-center sm:px-8">
         <p className="mb-3 text-lg font-semibold uppercase tracking-[0.25em] text-cyan-300">
           Built for better training
         </p>
@@ -111,9 +110,9 @@ export default function Home() {
           {whyChooseUs.map((item, idx) => (
             <div
               key={item.title}
-              className="group relative overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 p-7 shadow-2xl shadow-black/40 transition duration-300 hover:-translate-y-2 hover:border-cyan-300/60 group"
+              className="group relative overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 p-7 shadow-2xl shadow-black/40 transition-all duration-200 hover:-translate-y-2 hover:border-cyan-300 group"
             >
-              <div className="absolute right-0 top-0 h-28 w-28 rounded-bl-full bg-cyan-300/30 transition duration-300 group-hover:bg-cyan-300/60" />
+              <div className="absolute right-0 top-0 h-28 w-28 rounded-bl-full bg-cyan-300/30 transition duration-300 group-hover:bg-cyan-300" />
 
               <div className="relative z-10 mb-8 flex items-center justify-between">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white p-3">
@@ -130,7 +129,7 @@ export default function Home() {
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-7 text-zinc-400">
+                <p className="mt-4 text-sm leading-7 text-zinc-400 group-hover:text-cyan-300">
                   {item.desc}
                 </p>
               </div>

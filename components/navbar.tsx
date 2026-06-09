@@ -9,8 +9,8 @@ import Image from "next/image";
 const links = [
   { name: "Home", href: "/", bgColor: "bg-cyan-300/15", activeColor: "bg-cyan-300" },
   { name: "About", href: "/about", bgColor: "bg-orange-300/15", activeColor: "bg-orange-300" },
-  { name: "Products", href: "/products", bgColor: "bg-green-300/15", activeColor: "bg-green-300" },
-  { name: "Contact", href: "/contact", bgColor: "bg-pink-300/15", activeColor: "bg-pink-300" },
+//   { name: "Products", href: "/products", bgColor: "bg-green-300/15", activeColor: "bg-green-300" },
+  { name: "Contact", href: "/contact", bgColor: "bg-rose-300/15", activeColor: "bg-rose-300" },
 ];
 
 export default function Navbar() {
