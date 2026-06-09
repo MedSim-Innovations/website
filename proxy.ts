@@ -1,16 +1,18 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-const DISABLED_ROUTES = ['/products'];
+const hiddenProductionPaths = ["/products"];
 
 export function proxy(request: NextRequest) {
-  if (DISABLED_ROUTES.includes(request.nextUrl.pathname)) {
-    return NextResponse.redirect(new URL('/', request.url));
+  const pathname = request.nextUrl.pathname;
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    (pathname.startsWith("/test-") ||
+      hiddenProductionPaths.some((path) => pathname.startsWith(path)))
+  ) {
+    return new NextResponse(null, { status: 404 });
   }
+
   return NextResponse.next();
 }
-
-
-export const config = {
-    matcher: ['/products/:path*'],
-};
