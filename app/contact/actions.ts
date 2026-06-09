@@ -139,7 +139,7 @@ export async function sendContactEmail(
 
   try {
     await resend.emails.send({
-      from: "MedSim Innovations <onboarding@resend.dev>",
+      from: "MedSim Innovations <sales@medsiminnovations.com>",
       to: "sales@medsiminnovations.com",
       replyTo: email,
       subject: `New Website Enquiry From ${escapeHtml(name)}`,
