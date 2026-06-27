@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const hiddenProductionPaths = ["/products"];
+const hiddenProductionPaths = [""];
 
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;

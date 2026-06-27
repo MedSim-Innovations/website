@@ -1,4 +1,3 @@
-import { sendContactEmail } from "./actions";
 import ContactForm from "./contact-form";
 
 export default function Contact() {
