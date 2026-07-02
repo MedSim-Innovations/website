@@ -36,7 +36,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <div>
+            {/* <div>
               <p className="font-semibold text-rose-300">Phone</p>
               <a
                 href="tel:+919971466122"
@@ -44,7 +44,7 @@ export default function Contact() {
               >
                 +91 99714 66122
               </a>
-            </div>
+            </div> */}
 
             <div>
               <p className="font-semibold text-rose-300">Location</p>
