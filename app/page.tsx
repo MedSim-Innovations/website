@@ -59,7 +59,7 @@ export default function Home() {
           <h1 className="max-w-5xl font-serif text-3xl font-bold capitalize leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Every human life deserves a{" "}
             <span
-              className={`block bg-linear-to-br from-cyan-400 to-emerald-400 bg-clip-text text-5xl italic text-transparent sm:text-6xl md:text-7xl lg:text-8xl ${indieFlower.className}`}
+              className={`block bg-linear-to-br from-cyan-300 to-emerald-300 bg-clip-text text-5xl italic text-transparent sm:text-6xl md:text-7xl lg:text-8xl ${indieFlower.className}`}
             >
               great clinical experience
             </span>
@@ -68,14 +68,14 @@ export default function Home() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/products"
-              className="rounded-full bg-white hover:bg-lime-400 px-7 py-3 text-sm font-semibold text-black transition hover:scale-[1.03]"
+              className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition hover:scale-[1.03]"
             >
               Explore Products
             </Link>
 
             <Link
               href="/about"
-              className="rounded-full border border-white/20 px-7 py-3 text-sm font-semibold text-white transition hover:bg-orange-400 hover:text-black"
+              className="rounded-full border border-white/20 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black"
             >
               Learn More
             </Link>
@@ -110,16 +110,16 @@ export default function Home() {
           {whyChooseUs.map((item, idx) => (
             <div
               key={item.title}
-              className="group relative overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 p-7 shadow-2xl shadow-black/40 transition-all duration-200 hover:-translate-y-2 hover:border-cyan-600 group"
+              className="group relative overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 p-7 shadow-2xl shadow-black/40 transition-all duration-200 hover:-translate-y-2 hover:border-cyan-300 group"
             >
-              <div className="absolute right-0 top-0 h-28 w-28 rounded-bl-full bg-cyan-600" />
+              <div className="absolute right-0 top-0 h-28 w-28 rounded-bl-full bg-cyan-300/30 transition duration-300 group-hover:bg-cyan-300" />
 
               <div className="relative z-10 mb-8 flex items-center justify-between">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white p-3">
                   <Image src={item.icon} alt={item.title} className="h-8 w-8" />
                 </div>
 
-                <span className="text-5xl font-black text-white">
+                <span className="text-5xl font-black text-white/40 group-hover:text-white">
                   {idx + 1}
                 </span>
               </div>
@@ -129,7 +129,7 @@ export default function Home() {
                   {item.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-7 text-zinc-400 group-hover:text-cyan-600">
+                <p className="mt-4 text-sm leading-7 text-zinc-400 group-hover:text-cyan-300">
                   {item.desc}
                 </p>
               </div>
@@ -150,7 +150,7 @@ export default function Home() {
 
         <Link
           href="/contact"
-          className="mt-8 inline-flex rounded-full bg-white hover:bg-pink-400 px-8 py-3 text-sm font-semibold text-black transition hover:scale-[1.03]"
+          className="mt-8 inline-flex rounded-full bg-white px-8 py-3 text-sm font-semibold text-black transition hover:scale-[1.03]"
         >
           Get in Touch
         </Link>
