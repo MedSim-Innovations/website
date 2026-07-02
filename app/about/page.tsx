@@ -153,7 +153,7 @@ export default function About() {
 
             <Link
               href="/contact"
-              className="mt-8 inline-flex rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition hover:scale-[1.03]"
+              className="mt-8 inline-flex rounded-full bg-white hover:bg-pink-400 px-7 py-3 text-sm font-semibold text-black transition hover:scale-[1.03]"
             >
               Contact Us For A Detailed Discussion
             </Link>
