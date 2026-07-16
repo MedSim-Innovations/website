@@ -1,0 +1,29 @@
+services:
+  prod-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: medsim-innovations-website:prod
+    container_name: medsim-innovations-website-prod
+    ports:
+      - "3000:3000"
+  dev-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: medsim-innovations-website:dev
+    container_name: medsim-innovations-website-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules/
+            - .next/
+        - action: rebuild
+          path: package.json
