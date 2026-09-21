@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <section aria-labelledby="hero-title" className="overflow-hidden bg-slate-950 text-white">
       <header className="relative z-10 mx-auto flex w-full flex-wrap items-center gap-x-4 gap-y-3 px-4 py-4 sm:px-6 sm:py-5 lg:gap-x-8 lg:px-10">
-        <Link href="/" className="order-1 flex min-w-0 items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400 sm:gap-3" aria-label="MedSim Innovations home">
+        <Link href="/" className="order-1 mx-auto flex min-w-0 items-center gap-2.5 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-400 sm:gap-3 lg:mx-0" aria-label="MedSim Innovations home">
           <Image src={logo} alt="" priority className="size-10 shrink-0 object-contain sm:size-12" />
           <span className="min-w-0">
             <span className="block text-xs font-bold uppercase leading-tight tracking-[0.08em] sm:text-base">MedSim Innovations</span>
@@ -47,7 +47,7 @@ export default function Hero() {
           ))}
         </nav>
 
-        <a href="#contact" className="order-2 ml-auto inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-white px-3 text-xs font-bold text-slate-950 shadow-sm shadow-cyan-300/20 transition-colors hover:bg-white/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:px-5 sm:text-sm lg:order-3 lg:ml-0">
+        <a href="#contact" className="order-2 ml-auto hidden min-h-10 shrink-0 items-center justify-center rounded-full bg-white px-5 text-sm font-bold text-slate-950 shadow-sm shadow-cyan-300/20 transition-colors hover:bg-white/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 lg:order-3 lg:ml-0 lg:inline-flex">
           Request a quote <span className="ml-1.5 text-base" aria-hidden="true">↗</span>
         </a>
       </header>
