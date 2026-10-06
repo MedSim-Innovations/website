@@ -82,7 +82,7 @@ export async function sendContactEmail(
       },
       body: JSON.stringify({
         from: "MedSim Innovations <sales@medsiminnovations.com>",
-        to: ["anitejsharmas@gmail.com"],
+        to: ["sales@medsiminnovations.com"],
         subject: "New MedSim Innovations website enquiry",
         text: [
           `Name: ${name}`,
