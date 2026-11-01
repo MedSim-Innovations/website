@@ -1,100 +1,416 @@
+
 import Image from "next/image";
 
 // Fonts
 import { Permanent_Marker } from "next/font/google";
-const permanentMarker = Permanent_Marker({
-    weight: "400"
-});
 
 // Images
 import HeroImage from "@/public/hero.jpg";
-import CollaborativeMedicalSimulationTrainingImage from "@/public/Collaborative Medical Simulation Training.png";
+import SimulationImage from "@/public/Collaborative Medical Simulation Training.png";
 
 // Icons
 import IconWrapper from "./ui/icon-wrapper";
 import { ICON_PATHS } from "@/constants/icons";
 
-// Page Content
+// Font configuration
+const permanentMarker = Permanent_Marker({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Page content
 const heroTags = [
-    { label: "Ready procedure kits" },
-    { label: "Complete lab setup" },
-    { label: "Training & support" }
+  "Ready procedure kits",
+  "Complete lab setup",
+  "Training & support",
 ];
+
 const heroQuote = "Practice for the moments that matter";
-const heroSubQuote = "Bring clinical learning to life with affordable, customizable simulation kits, skills-lab equipment, and hands-on training solutions for nursing and healthcare education.";
-const heroFooterQuote = "FOR EDUCATORS. FOR FUTURE CLINICIANS. FOR CONFIDENT CARE.";
 
-export default function Hero() {
-    return ( 
-        <div className="relative w-full h-180 overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60" />
+const heroSubQuote =
+  "Bring clinical learning to life with affordable, customizable simulation kits, skills-lab equipment, and hands-on training solutions for nursing and healthcare education.";
 
-            <Image src={HeroImage} alt="Hero Image" priority className="w-full h-auto min-h-120 max-h-180 object-cover" />
+const heroFooterQuote =
+  "FOR EDUCATORS. FOR FUTURE CLINICIANS. FOR CONFIDENT CARE.";
 
-            <div className="absolute top-0 left-0 w-full h-full flex flex-col">
-                <div className="w-full h-full grid grid-cols-[auto_1fr] pl-12">
-                    <div className="w-full max-w-2xl h-full flex flex-col justify-center items-start">
-                        <div className="flex flex-row justify-start items-center gap-4">
-                            {
-                                heroTags.map((tag, index) => (
-                                    <p key={index} className={`border border-white text-white rounded-full px-4 py-1 capitalize text-sm`}>{tag.label}</p>
-                                ))
-                            }
-                        </div>
-                        <h1 className={`mt-8 text-7xl bg-linear-to-r from-cyan-400 via-lime-300 to-yellow-300 bg-clip-text text-transparent ${permanentMarker.className}`}>{heroQuote}</h1>
-                        <p className="text-white max-w-xl text-md mt-8">{heroSubQuote}</p>
-                    </div>
+// Hotspot and callout configuration
+const callouts = [
+  {
+    id: 1,
+    title: "Realistic, Hands-On Practice",
+    text: "Give learners opportunities to practice essential clinical procedures in a safe, simulated environment.",
+    x: "48%",
+    y: "28%",
+    cardTop: "4%",
+    color: "#67e8f9",
+  },
+  {
+    id: 2,
+    title: "Repeat. Refine. Build Confidence.",
+    text: "Support skill development through repeated practice, feedback, and reflection.",
+    x: "56%",
+    y: "48%",
+    cardTop: "37%",
+    color: "#bef264",
+  },
+  {
+    id: 3,
+    title: "Accessible, Customizable Training",
+    text: "Equip nursing and healthcare programs with affordable simulation kits, skills-lab equipment, and training support tailored to their needs.",
+    x: "44%",
+    y: "64%",
+    cardTop: "70%",
+    color: "#fde047",
+  },
+];
 
-                    <div className="relative w-full h-full bg-black overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-full bg-black/30" />
-                        <div className="absolute top-12 right-20 flex flex-col items-center gap-2">
-                            <p className="text-white text-sm uppercase font-bold">patient simulation</p>
-                            <div className="flex justify-center text-sm text-center items-center px-4 py-2 bg-cyan-600 rounded-lg capitalize text-white">
-                                realistic by design.<br/>ready for practice.
-                            </div>
-                        </div>
-                        <Image src={CollaborativeMedicalSimulationTrainingImage} alt="Collaborative Medical Simulation Training" className="w-full h-full object-fill" />
-                    </div>
-                </div>
+function Hotspot({
+  id,
+  color,
+}: {
+  id: number;
+  color: string;
+}) {
+  return (
+    <div
+      className="
+        relative flex size-9 items-center justify-center
+        rounded-full border-2 border-black
+        text-xs font-extrabold text-black
+        shadow-[0_0_18px_rgba(253,224,71,0.4)]
+        sm:size-10
+      "
+      style={{ backgroundColor: color }}
+    >
+      <span
+        className="absolute -inset-1.5 rounded-full border opacity-60"
+        style={{ borderColor: color }}
+      />
+      {id}
+    </div>
+  );
+}
 
-                <div className="w-full h-16 border-t border-gray-400 bg-black grid grid-cols-2 px-8">
-                    <div className="flex justify-start items-center">
-                        <p className="uppercase text-gray-300 text-xs font-bold">{heroFooterQuote}</p>
-                    </div>
+function CalloutCard({
+  id,
+  title,
+  text,
+  color,
+  compact = false,
+}: {
+  id: number;
+  title: string;
+  text: string;
+  color: string;
+  compact?: boolean;
+}) {
+  return (
+    <div
+      className={`
+        relative flex w-full items-start gap-3
+        rounded-xl border border-white/15
+        bg-black/90 text-left backdrop-blur-md
+        ${compact ? "p-3 2xl:p-4" : "p-4 sm:p-5"}
+      `}
+    >
+      <div
+        className="flex size-8 shrink-0 items-center justify-center rounded-lg text-xs font-extrabold text-black"
+        style={{ backgroundColor: color }}
+      >
+        {String(id).padStart(2, "0")}
+      </div>
 
-                    <div className="flex flex-row justify-end items-center gap-2">
-                        <p className="uppercase text-gray-300 text-xs font-bold">DISCOVER MEDSIM</p>
-                        <IconWrapper path={ICON_PATHS.arrowDown} className="text-white w-auto h-6" />
-                    </div>
-                </div>
-            </div>
+      <div className="min-w-0">
+        <h3
+          className={`font-bold uppercase leading-snug ${
+            compact
+              ? "text-[10px] 2xl:text-xs"
+              : "text-xs sm:text-sm"
+          }`}
+          style={{ color }}
+        >
+          {title}
+        </h3>
 
-            {/* <div className="absolute top-1/2 left-16 -translate-y-1/2 flex flex-col justify-center items-start">
-                <div className="flex flex-row justify-start items-center gap-4">
-                    {
-                        heroTags.map((tag, index) => (
-                            <p key={index} className={`border border-white text-white rounded-full px-4 py-1 capitalize text-sm`}>{tag.label}</p>
-                        ))
-                    }
-                </div>
-                <h1 className={`mt-8 block bg-linear-to-r from-cyan-200 via-teal-200 to-lime-200 bg-clip-text text-[clamp(2.75rem,7.2vw,5rem)] leading-[0.98] text-transparent max-w-2xl font-bold capitalize ${permanentMarker.className}`}>{heroQuote}</h1>
-                <p className="text-gray-300 max-w-xl text-md mt-8">{heroSubQuote}</p>
-            </div>
+        <p
+          className={`mt-1.5 leading-relaxed text-gray-300 ${
+            compact
+              ? "text-[10px] 2xl:text-xs"
+              : "text-xs sm:text-sm"
+          }`}
+        >
+          {text}
+        </p>
+      </div>
+    </div>
+  );
+}
 
-            <div className="absolute bottom-0 left-0 w-full h-16 border-t border-gray-400 bg-black grid grid-cols-2 px-8">
-                <div className="flex justify-start items-center">
-                    <p className="uppercase text-gray-300 text-xs font-bold">{heroFooterQuote}</p>
-                </div>
+export default function Hero({ onExplore }: { onExplore: () => void }) {
+  return (
+    <section
+      className="
+        section-scroll relative isolate flex h-full w-full flex-col
+        overflow-y-auto overflow-x-hidden bg-black text-white
+      "
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <Image
+          src={HeroImage}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
 
-                <div className="flex flex-row justify-end items-center gap-2">
-                    <p className="uppercase text-gray-300 text-xs font-bold">DISCOVER MEDSIM</p>
-                    <IconWrapper path={ICON_PATHS.arrowDown} className="text-white w-auto h-6" />
-                </div>
-            </div>
+        <div className="absolute inset-0 bg-black/80" />
+      </div>
 
-            <div className="absolute top-1/2 -translate-y-1/2 right-16 w-120 h-100 border border-gray-300 rounded-2xl overflow-hidden p-4">
-                <Image src={CollaborativeMedicalSimulationTrainingImage} alt="Collaborative Medical Simulation Training" className="w-full h-full object-fill" />
-            </div> */}
+      <div
+        className="
+          mx-auto grid w-full max-w-[1700px] flex-1
+          grid-cols-1 items-center justify-items-center
+          gap-10 px-5 py-12
+          sm:px-8 sm:py-14
+          lg:gap-12 lg:px-12
+          xl:min-h-0 xl:grid-cols-[0.85fr_1.15fr]
+          xl:justify-items-stretch xl:gap-6
+          xl:px-12 xl:py-6
+          2xl:gap-10 2xl:px-16
+        "
+      >
+        <div
+          className="
+            flex w-full max-w-2xl flex-col
+            items-center justify-center text-center
+            xl:items-start xl:text-left
+          "
+        >
+          <div
+            className="
+              flex flex-wrap items-center justify-center
+              gap-2 xl:justify-start
+            "
+          >
+            {heroTags.map((tag) => (
+              <span
+                key={tag}
+                className="
+                  rounded-full border border-cyan-300/40
+                  bg-cyan-300/10 px-3 py-1.5
+                  text-[11px] font-medium text-cyan-100
+                  sm:px-4 sm:py-2 sm:text-xs
+                "
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <h1
+            className={`
+              mt-7 max-w-175
+              bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300
+              bg-clip-text pb-2 text-transparent
+              text-[clamp(2.7rem,7vw,5rem)]
+              leading-[1.12]
+              xl:text-[clamp(2.7rem,4vw,4.75rem)]
+              ${permanentMarker.className}
+            `}
+          >
+            {heroQuote}
+          </h1>
+
+          <p
+            className="
+              mt-5 max-w-138
+              text-sm leading-7 text-gray-300
+              sm:mt-7 sm:text-base sm:leading-8
+              xl:text-[15px]
+            "
+          >
+            {heroSubQuote}
+          </p>
         </div>
-    )
+
+        <div
+          className="
+            flex w-full min-w-0 flex-col
+            items-center justify-center
+            xl:h-full
+          "
+        >
+          <div className="flex w-full flex-col items-center gap-8 xl:hidden">
+            <div
+              className="
+                relative aspect-square
+                w-[min(100%,300px)]
+                sm:w-[min(100%,400px)]
+                lg:w-[min(100%,440px)]
+              "
+            >
+              <div className="absolute -inset-3 rounded-full border border-cyan-300/20" />
+
+              <div
+                className="
+                  absolute inset-0 overflow-hidden rounded-full
+                  border-2 border-cyan-300/60 bg-black
+                  shadow-[0_0_45px_rgba(34,211,238,0.12)]
+                "
+              >
+                <Image
+                  src={SimulationImage}
+                  alt="Medical simulation training"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 300px, 440px"
+                  className="object-contain"
+                />
+              </div>
+
+              {callouts.map((point) => (
+                <div
+                  key={point.id}
+                  className="absolute -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: point.x, top: point.y }}
+                >
+                  <Hotspot id={point.id} color={point.color} />
+                </div>
+              ))}
+            </div>
+
+            <div className="grid w-full max-w-xl grid-cols-1 gap-3">
+              {callouts.map((point) => (
+                <CalloutCard key={point.id} {...point} />
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="
+              relative hidden w-full max-w-212
+              aspect-10/7 xl:block
+            "
+          >
+            <div
+              className="
+                absolute left-[4%] top-[7%]
+                aspect-square w-[60%]
+                rounded-full
+              "
+            >
+              <div className="absolute -inset-3 rounded-full border border-cyan-300/15" />
+
+              <div
+                className="
+                  absolute inset-0 overflow-hidden rounded-full
+                  border-2 border-cyan-300/65 bg-black
+                  shadow-[0_0_55px_rgba(34,211,238,0.12)]
+                "
+              >
+                <Image
+                  src={SimulationImage}
+                  alt="Medical simulation training"
+                  fill
+                  priority
+                  sizes="(min-width: 1536px) 510px, 420px"
+                  className="object-contain"
+                />
+              </div>
+
+              {callouts.map((point) => (
+                <div
+                  key={point.id}
+                  className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+                  style={{ left: point.x, top: point.y }}
+                >
+                  <Hotspot id={point.id} color={point.color} />
+                </div>
+              ))}
+            </div>
+
+            <svg
+              className="pointer-events-none absolute inset-0 z-10 h-full w-full overflow-visible"
+              viewBox="0 0 1000 700"
+              preserveAspectRatio="none"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M328 220 H400 L630 50 H680"
+                stroke="#67e8f9"
+                strokeWidth="1.8"
+                strokeOpacity="0.8"
+              />
+              <path
+                d="M376 330 H550 L660 270 H680"
+                stroke="#bef264"
+                strokeWidth="1.8"
+                strokeOpacity="0.8"
+              />
+              <path
+                d="M304 440 H520 L570 500 H680"
+                stroke="#fde047"
+                strokeWidth="1.8"
+                strokeOpacity="0.8"
+              />
+              <circle cx="680" cy="50" r="4" fill="#67e8f9" />
+              <circle cx="680" cy="270" r="4" fill="#bef264" />
+              <circle cx="680" cy="500" r="4" fill="#fde047" />
+            </svg>
+
+            {callouts.map((point) => (
+              <div
+                key={point.id}
+                className="
+                  absolute left-[68%] z-20
+                  w-[32%] -translate-y-[42%]
+                "
+                style={{ top: point.cardTop }}
+              >
+                <CalloutCard {...point} compact />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <footer className="relative shrink-0 border-t border-white/15 bg-black/90">
+        <div
+          className="
+            mx-auto flex w-full max-w-[1700px]
+            flex-col items-center justify-center gap-3
+            px-5 py-4
+            sm:px-8
+            md:flex-row md:justify-between
+            xl:px-12 2xl:px-16
+          "
+        >
+          <p
+            className="
+              text-center text-[10px] font-bold
+              uppercase leading-5 tracking-wider
+              text-gray-400
+              sm:text-xs md:text-left
+            "
+          >
+            {heroFooterQuote}
+          </p>
+
+          <button type="button" onClick={onExplore} className="group flex shrink-0 items-center gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+            <p className="text-xs font-bold uppercase tracking-wide text-cyan-300">
+              DISCOVER MEDSIM
+            </p>
+
+            <IconWrapper
+              path={ICON_PATHS.arrowDown}
+              className="h-5 w-auto text-cyan-300 transition-transform group-hover:translate-y-1"
+            />
+          </button>
+        </div>
+      </footer>
+    </section>
+  );
 }

@@ -8,8 +8,8 @@ const robotoSerif = Roboto_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "MedSim Innovations",
-  description: "Authored by Anitej Isaac Sharma",
+  title: "MedSim Innovations | Professional Training Solutions",
+  description: "Affordable, customizable medical simulation kits, skills-lab equipment, and hands-on training solutions.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${robotoSerif.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="h-full overflow-hidden">{children}</body>
     </html>
   );
 }
