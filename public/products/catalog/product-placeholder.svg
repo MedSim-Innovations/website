@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Product image placeholder</title>
+  <desc id="desc">Replace this placeholder with the product image named in the product data file.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050505"/><stop offset="1" stop-color="#0d1615"/></linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#67e8f9" stroke-opacity=".08"/></pattern>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#67e8f9"/><stop offset=".52" stop-color="#bef264"/><stop offset="1" stop-color="#fde047"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/><rect width="1600" height="1000" fill="url(#grid)"/>
+  <rect x="330" y="160" width="940" height="680" rx="56" fill="#050505" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>
+  <path d="M620 610l135-145 105 105 86-86 178 190H476z" fill="none" stroke="url(#line)" stroke-width="12" stroke-linejoin="round"/>
+  <circle cx="1000" cy="368" r="55" fill="none" stroke="#67e8f9" stroke-width="12"/>
+  <text x="800" y="735" fill="#fff" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="8">ADD PRODUCT IMAGE</text>
+  <text x="800" y="790" fill="#a3a3a3" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" letter-spacing="3">RECOMMENDED 1600 × 1000</text>
+</svg>

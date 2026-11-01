@@ -1,0 +1,54 @@
+
+type SiteCopyrightProps = {
+  className?: string;
+};
+
+export default function Footer({
+  className = "",
+}: SiteCopyrightProps) {
+  return (
+    <footer
+      className={`
+        w-full shrink-0
+        border-t border-white/10
+        bg-black px-5 py-3
+        sm:px-8 lg:px-12
+        ${className}
+      `}
+    >
+      <div
+        className="
+          mx-auto flex w-full max-w-[1700px]
+          flex-col items-center justify-between
+          gap-2 text-center
+          lg:flex-row lg:gap-6 lg:text-left
+        "
+      >
+        <p className="text-[10px] leading-relaxed tracking-wide text-neutral-500 sm:text-[11px]">
+          © 2026{" "}
+          <span className="font-semibold text-neutral-500">
+            MedSim Innovations Private Limited.
+          </span>{" "}
+          All rights reserved.
+        </p>
+
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] tracking-wide sm:text-[11px] lg:justify-end">
+          <span className="font-medium text-neutral-500">
+            CIN U46596HR2024PTC125730
+          </span>
+
+          <span
+            aria-hidden="true"
+            className="hidden size-1 rounded-full bg-neutral-600 sm:block"
+          />
+
+          <span className="text-neutral-500">
+            Incorporated in India
+            <span className="mx-2 text-neutral-700">·</span>
+            24 October 2024
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}

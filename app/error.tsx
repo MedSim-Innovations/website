@@ -1,10 +1,20 @@
 "use client";
 
-export default function ErrorPage() {
-    return (
-        <div>
-        
-        </div>
-        
-    )
+import { useEffect } from "react";
+import StatusPage from "@/components/feedback/status-page";
+
+export default function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <StatusPage
+      eyebrow="Something went wrong"
+      title="This section could not load."
+      description="The interruption may be temporary. Try loading the section again."
+      actionLabel="Try again"
+      onAction={reset}
+    />
+  );
 }
