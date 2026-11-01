@@ -1,134 +1,87 @@
 # MedSim Innovations Website
 
-The public website for **MedSim Innovations Private Limited**, a medical simulation and healthcare training company based in Gurugram, India.
+The public website for MedSim Innovations Private Limited, a medical simulation and healthcare training company based in Gurugram, India.
 
-MedSim Innovations provides affordable simulation technology, procedure kits, nursing skills-lab solutions, student essentials, installation support, and practical training resources for nursing colleges, medical colleges, hospitals, and healthcare professionals.
+The website presents procedure kits, nursing skills-lab solutions, student essentials, healthcare training services and institutional support for colleges, hospitals and care teams.
 
 ## Company contact
 
-- **General and product enquiries:** [sales@medsiminnovations.com](mailto:sales@medsiminnovations.com)
-- **Registered office:** Q-114, 3rd Floor, South City 1, Gurugram, Haryana 122001, India
-
-For contribution proposals, accessibility reports, security concerns, or questions about this repository, email [sales@medsiminnovations.com](mailto:sales@medsiminnovations.com) with a clear subject and enough detail for the team to reproduce or review the request.
+- General and product enquiries: [sales@medsiminnovations.com](mailto:sales@medsiminnovations.com)
+- Phone: [+91 997 146 6122](tel:+919971466122)
+- Registered office: Q-114, 3rd Floor, South City 1, Gurugram, Haryana 122001, India
 
 ## Technology
 
-- [Next.js 16](https://nextjs.org/) with the App Router
+- Next.js 16 with the App Router
 - React 19 and TypeScript
 - Tailwind CSS 4
-- shadcn components and Embla Carousel
-- Lucide icons
-- Resend HTTP API for contact-form email delivery
+- ESLint and Prettier
+- Static metadata routes for robots, sitemap and the web manifest
+- JSON-LD organization and product-catalog structured data
 
-## Prerequisites
+## Local development
 
-- Node.js 20.9 or newer
-- npm 10 or newer
-- A Resend API key only when testing real contact-form delivery
-
-## Run locally
-
-1. Clone the repository and enter the website directory:
-
-   ```bash
-   git clone https://github.com/MedSim-Innovations/website.git
-   cd website
-   ```
-
-2. Install the locked dependencies:
-
-   ```bash
-   npm ci
-   ```
-
-3. Create your local environment file:
-
-   ```bash
-   cp .env.example .env.local
-   ```
-
-   On Windows PowerShell:
-
-   ```powershell
-   Copy-Item .env.example .env.local
-   ```
-
-4. Add a valid `RESEND_API_KEY` to `.env.local` if you need the contact form to send email. The rest of the website runs without it.
-
-5. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-6. Open [http://localhost:3000](http://localhost:3000).
-
-## Environment variables
-
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `RESEND_API_KEY` | Production contact form only | Authenticates server-side contact email requests to Resend. |
-
-Keep `.env.local` private. Environment files are ignored by Git, while `.env.example` documents the required keys without storing credentials.
-
-The contact form sends from and to `sales@medsiminnovations.com`. Before production deployment, verify `medsiminnovations.com` as a sending domain in Resend and configure `RESEND_API_KEY` in the hosting platform’s server-side environment.
-
-## Available commands
-
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start the local development server. |
-| `npm run lint` | Run ESLint across the project. |
-| `npm run build` | Create and type-check an optimized production build. |
-| `npm run start` | Serve the completed production build. |
-
-Before opening a contribution, run:
+Requires Node.js 20.9 or newer and npm 10 or newer.
 
 ```bash
-npm run lint
-npm run build
+npm ci
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Commands
+
+| Command                | Description                                 |
+| ---------------------- | ------------------------------------------- |
+| `npm run dev`          | Start the development server.               |
+| `npm run format`       | Format source files with Prettier.          |
+| `npm run format:check` | Verify source formatting.                   |
+| `npm run lint`         | Run ESLint.                                 |
+| `npm run build`        | Create and type-check the production build. |
+| `npm run start`        | Serve the production build.                 |
+| `npm run deps:check`   | Check dependency version consistency.       |
+| `npm run typecheck`    | Run TypeScript without emitting files.      |
+| `npm run audit`        | Audit production dependencies.              |
+| `npm run check`        | Run the complete pre-release quality gate.  |
+
+Before merging a change, run:
+
+```bash
+npm run check
 ```
 
 ## Project structure
 
 ```text
-app/                    Next.js routes, metadata, global styles, and server actions
-components/             Page sections and shared interface components
-components/ui/          Reusable shadcn interface primitives
-lib/                    Shared utilities
-public/about-us/        About-section imagery
-public/products/        Product and simulation-lab imagery
-public/fonts/           Locally hosted display fonts
+app/                   Routes, metadata, error states and SEO files
+components/feedback/   Branded not-found and error-state presentation
+components/layout/     Application shell, navigation and shared page chrome
+components/sections/   Home, products, services, story and contact sections
+components/ui/         Low-level reusable interface primitives
+constants/             Shared types and navigation data
+data/                  Product and story content
+lib/                   Site-wide configuration
+public/about-us/        Story imagery
+public/products/        Product imagery
 ```
 
-The homepage is assembled in `app/page.tsx`. Its main sections live in `components/hero.tsx`, `components/about-us.tsx`, `components/products.tsx`, `components/contact.tsx`, and `components/site-footer.tsx`.
+The website uses real App Router pages at `/`, `/products`, `/services`, `/story` and `/contact`. Shared page chrome is assembled in `components/layout/site-shell.tsx`. Each page owns its scroll area and places the copyright notice after its full content rather than fixing it to the viewport. A small compatibility component redirects legacy hash links such as `/#products` to their current routes.
 
-## Contact-form behavior
+The application also includes branded loading, not-found, route-error and global-error states. The Contact section provides an embedded map and a direct Google Maps link.
 
-The server action in `app/actions/contact.ts`:
+## Content and assets
 
-- validates required fields, field lengths, email format, and enquiry type;
-- uses a honeypot to absorb common automated submissions;
-- applies per-IP and global in-memory request limits;
-- sends a plain-text email through Resend with a ten-second timeout; and
-- returns visitor-safe errors without exposing provider responses or secrets.
-
-The in-memory rate limiter applies independently to each running server instance. A multi-instance or high-traffic deployment should use shared rate limiting or managed bot protection.
-
-## Contributing
-
-1. Create a focused branch from the current default branch.
-2. Keep changes small and aligned with the existing cyan, lime, and rose visual system.
-3. Preserve responsive behavior, keyboard access, visible focus styles, reduced-motion support, semantic headings, and useful image alternative text.
-4. Store optimized website assets under `public/` with descriptive filenames. Confirm publication rights before adding third-party media.
-5. Run lint and the production build.
-6. Summarize what changed, how it was tested, and any remaining limitations in the pull request.
-
-For substantial content, product, architecture, or branding changes, contact [sales@medsiminnovations.com](mailto:sales@medsiminnovations.com) before implementation so the proposal can be reviewed with the MedSim Innovations team.
+- Keep factual claims aligned with approved company source material.
+- Store optimized public assets under `public/` with descriptive filenames.
+- Preserve useful alternative text and confirm publication rights before adding media.
+- Product card imagery is mapped in `data/products.ts`.
+- Shared business identity, canonical domain and contact details are stored in `lib/site.ts`.
+- Update the explicit copyright year in `components/layout/site-copyright.tsx` when required.
 
 ## Deployment
 
-The application can run on any platform that supports a Next.js Node server.
+The application runs on platforms that support a Next.js Node server:
 
 ```bash
 npm ci
@@ -136,4 +89,11 @@ npm run build
 npm run start
 ```
 
-Configure `RESEND_API_KEY` in the deployment environment and serve the site over HTTPS. Do not expose the key through a `NEXT_PUBLIC_` variable.
+Serve the production deployment over HTTPS and point the canonical domain to `https://www.medsiminnovations.com`.
+
+After deployment:
+
+1. Confirm the canonical domain, HTTPS redirect and security headers.
+2. Submit `https://www.medsiminnovations.com/sitemap.xml` to Google Search Console and Bing Webmaster Tools.
+3. Test the Open Graph preview and organization structured data against the live URL.
+4. Verify the contact links, map embed and all product images from the production region.
