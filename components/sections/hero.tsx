@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Fonts
-import { Permanent_Marker } from "next/font/google";
+import { Special_Gothic_Expanded_One } from "next/font/google";
 
 // Images
 import HeroImage from "@/public/hero.jpg";
@@ -14,7 +14,7 @@ import SiteCopyright from "@/components/layout/footer";
 import { ICON_PATHS } from "@/constants/icons";
 
 // Font configuration
-const permanentMarker = Permanent_Marker({
+const specialGothicExpandedOne = Special_Gothic_Expanded_One({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -141,7 +141,7 @@ export default function Hero() {
             </div>
 
             <h1
-              className={`mt-7 max-w-175 bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text pb-2 text-[clamp(2.7rem,7vw,5rem)] leading-[1.12] text-transparent xl:text-[clamp(2.7rem,4vw,4.75rem)] ${permanentMarker.className} `}
+              className={`mt-7 max-w-175 bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text pb-2 text-[clamp(2.7rem,7vw,5rem)] leading-[1.12] text-transparent xl:text-[clamp(2.7rem,4vw,4.75rem)] capitalize ${specialGothicExpandedOne.className} `}
             >
               {heroQuote}
             </h1>
