@@ -35,19 +35,19 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Commands
 
-| Command                | Description                                    |
-| ---------------------- | ---------------------------------------------- |
-| `npm run dev`          | Start the development server.                  |
-| `npm run format`       | Format source files with Prettier.             |
-| `npm run format:check` | Verify source formatting.                      |
-| `npm run lint`         | Run ESLint.                                    |
-| `npm run build`        | Create and type-check the production build.    |
-| `npm run start`        | Serve the production build.                    |
-| `npm run deps:check`   | Check dependency version consistency.          |
-| `npm run typecheck`    | Run TypeScript without emitting files.         |
-| `npm run audit`        | Audit production and development dependencies. |
-| `npm run test`         | Run browser and accessibility tests.           |
-| `npm run check`        | Run the complete pre-release quality gate.     |
+| Command                | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `npm run dev`          | Start the development server.                    |
+| `npm run format`       | Format source files with Prettier.               |
+| `npm run format:check` | Verify source formatting.                        |
+| `npm run lint`         | Run ESLint.                                      |
+| `npm run build`        | Create and type-check the production build.      |
+| `npm run start`        | Serve the production build.                      |
+| `npm run deps:check`   | Check dependency version consistency.            |
+| `npm run typecheck`    | Generate Next.js route types and run TypeScript. |
+| `npm run audit`        | Audit production and development dependencies.   |
+| `npm run test`         | Run browser and accessibility tests.             |
+| `npm run check`        | Run the complete pre-release quality gate.       |
 
 Before merging a change, run:
 

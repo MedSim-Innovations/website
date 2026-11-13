@@ -50,6 +50,6 @@
     "start": "next start",
     "test": "npm run test:e2e",
     "test:e2e": "playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit"
   }
 }
