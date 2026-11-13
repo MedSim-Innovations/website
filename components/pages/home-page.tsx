@@ -3,53 +3,12 @@ import Link from "next/link";
 
 // Images
 import HeroImage from "@/public/hero.jpg";
-import SimulationImage from "@/public/Collaborative Medical Simulation Training.png";
+import SimulationImage from "@/public/collaborative-medical-simulation-training.png";
 
 // Icons
-import IconWrapper from "@/components/ui/icon-wrapper";
-import SiteCopyright from "@/components/layout/footer";
-import { ICON_PATHS } from "@/constants/icons";
-
-// Page content
-const heroTags = ["Ready procedure kits", "Complete lab setup", "Training & support"];
-
-const heroQuote = "Practice for the moments that matter";
-
-const heroSubQuote =
-  "Bring clinical learning to life with affordable, customizable simulation kits, skills-lab equipment, and hands-on training solutions for nursing and healthcare education.";
-
-const heroFooterQuote = "FOR EDUCATORS. FOR FUTURE CLINICIANS. FOR CONFIDENT CARE.";
-
-// Hotspot and callout configuration
-const callouts = [
-  {
-    id: 1,
-    title: "Realistic, Hands-On Practice",
-    text: "Give learners opportunities to practice essential clinical procedures in a safe, simulated environment.",
-    x: "48%",
-    y: "28%",
-    cardTop: "4%",
-    color: "#67e8f9",
-  },
-  {
-    id: 2,
-    title: "Repeat. Refine. Build Confidence.",
-    text: "Support skill development through repeated practice, feedback, and reflection.",
-    x: "56%",
-    y: "48%",
-    cardTop: "37%",
-    color: "#bef264",
-  },
-  {
-    id: 3,
-    title: "Accessible, Customizable Training",
-    text: "Equip nursing and healthcare programs with affordable simulation kits, skills-lab equipment, and training support tailored to their needs.",
-    x: "44%",
-    y: "64%",
-    cardTop: "70%",
-    color: "#fde047",
-  },
-];
+import Icon from "@/components/ui/icon";
+import { ICON_PATHS } from "@/components/ui/icons";
+import { heroCallouts, heroCopy, heroTags } from "@/content/home";
 
 function Hotspot({ id, color }: { id: number; color: string }) {
   return (
@@ -107,47 +66,44 @@ function CalloutCard({
   );
 }
 
-export default function Hero() {
+export default function HomePageContent() {
   return (
-    <section
-      tabIndex={0}
-      className="section-scroll relative isolate flex h-full w-full flex-col overflow-x-hidden overflow-y-auto bg-black text-white focus-visible:outline-none"
-    >
+    <section className="relative isolate flex min-h-[calc(100dvh-5rem)] w-full flex-col overflow-x-hidden bg-black text-white">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <Image src={HeroImage} alt="" fill priority sizes="100vw" className="object-cover object-center" />
 
         <div className="absolute inset-0 bg-black/80" />
       </div>
 
-      <div className="flex min-h-full shrink-0 flex-col">
+      <div className="flex flex-1 flex-col">
         <div className="mx-auto grid w-full max-w-[1700px] flex-1 grid-cols-1 items-center justify-items-center gap-10 px-5 py-12 sm:px-8 sm:py-14 lg:gap-12 lg:px-12 xl:min-h-0 xl:grid-cols-[0.85fr_1.15fr] xl:justify-items-stretch xl:gap-6 xl:px-12 xl:py-6 2xl:gap-10 2xl:px-16">
           <div className="flex w-full max-w-2xl flex-col items-center justify-center text-center xl:items-start xl:text-left">
             <div className="flex flex-wrap items-center justify-center gap-2 xl:justify-start">
               {heroTags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1.5 text-[11px] font-medium text-cyan-100 sm:px-4 sm:py-2 sm:text-xs"
+                  className="border-brand-primary/40 bg-brand-primary/10 rounded-full border px-3 py-1.5 text-[11px] font-medium text-cyan-100 sm:px-4 sm:py-2 sm:text-xs"
                 >
                   {tag}
                 </span>
               ))}
             </div>
 
-            <h1 className="mt-7 max-w-175 bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text pb-2 text-[clamp(2.7rem,7vw,5rem)] leading-[1.12] font-semibold tracking-[-.035em] text-transparent capitalize xl:text-[clamp(2.7rem,4vw,4.75rem)]">
-              {heroQuote}
+            <h1 className="from-brand-primary via-brand-secondary to-brand-highlight mt-7 max-w-175 bg-linear-to-r bg-clip-text pb-2 text-[clamp(2.7rem,7vw,5rem)] leading-[1.12] font-semibold tracking-[-.035em] text-transparent capitalize xl:text-[clamp(2.7rem,4vw,4.75rem)]">
+              {heroCopy.heading}
             </h1>
 
             <p className="mt-5 max-w-138 text-sm leading-7 text-gray-300 sm:mt-7 sm:text-base sm:leading-8 xl:text-[15px]">
-              {heroSubQuote}
+              {heroCopy.description}
             </p>
           </div>
 
           <div className="flex w-full min-w-0 flex-col items-center justify-center xl:h-full">
             <div className="flex w-full flex-col items-center gap-8 xl:hidden">
               <div className="relative aspect-square w-[min(100%,300px)] sm:w-[min(100%,400px)] lg:w-[min(100%,440px)]">
-                <div className="absolute -inset-3 rounded-full border border-cyan-300/20" />
+                <div className="border-brand-primary/20 absolute -inset-3 rounded-full border" />
 
-                <div className="absolute inset-0 overflow-hidden rounded-full border-2 border-cyan-300/60 bg-black shadow-[0_0_45px_rgba(34,211,238,0.12)]">
+                <div className="border-brand-primary/60 absolute inset-0 overflow-hidden rounded-full border-2 bg-black shadow-[0_0_45px_rgba(34,211,238,0.12)]">
                   <Image
                     src={SimulationImage}
                     alt="Medical simulation training"
@@ -158,7 +114,7 @@ export default function Hero() {
                   />
                 </div>
 
-                {callouts.map((point) => (
+                {heroCallouts.map((point) => (
                   <div
                     key={point.id}
                     className="absolute -translate-x-1/2 -translate-y-1/2"
@@ -170,7 +126,7 @@ export default function Hero() {
               </div>
 
               <div className="grid w-full max-w-xl grid-cols-1 gap-3">
-                {callouts.map((point) => (
+                {heroCallouts.map((point) => (
                   <CalloutCard key={point.id} {...point} />
                 ))}
               </div>
@@ -178,9 +134,9 @@ export default function Hero() {
 
             <div className="relative hidden aspect-10/7 w-full max-w-212 xl:block">
               <div className="absolute top-[7%] left-[4%] aspect-square w-[60%] rounded-full">
-                <div className="absolute -inset-3 rounded-full border border-cyan-300/15" />
+                <div className="border-brand-primary/15 absolute -inset-3 rounded-full border" />
 
-                <div className="absolute inset-0 overflow-hidden rounded-full border-2 border-cyan-300/65 bg-black shadow-[0_0_55px_rgba(34,211,238,0.12)]">
+                <div className="border-brand-primary/65 absolute inset-0 overflow-hidden rounded-full border-2 bg-black shadow-[0_0_55px_rgba(34,211,238,0.12)]">
                   <Image
                     src={SimulationImage}
                     alt="Medical simulation training"
@@ -191,7 +147,7 @@ export default function Hero() {
                   />
                 </div>
 
-                {callouts.map((point) => (
+                {heroCallouts.map((point) => (
                   <div
                     key={point.id}
                     className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
@@ -217,7 +173,7 @@ export default function Hero() {
                 <circle cx="680" cy="500" r="4" fill="#fde047" />
               </svg>
 
-              {callouts.map((point) => (
+              {heroCallouts.map((point) => (
                 <div
                   key={point.id}
                   className="absolute left-[68%] z-20 w-[32%] -translate-y-[42%]"
@@ -230,27 +186,26 @@ export default function Hero() {
           </div>
         </div>
 
-        <footer className="relative shrink-0 border-t border-white/15 bg-black/90">
+        <footer className="relative mt-auto shrink-0 border-t border-white/15 bg-black/50">
           <div className="mx-auto flex w-full max-w-[1700px] flex-col items-center justify-center gap-3 px-5 py-4 sm:px-8 md:flex-row md:justify-between xl:px-12 2xl:px-16">
             <p className="text-center text-[10px] leading-5 font-bold tracking-wider text-gray-400 uppercase sm:text-xs md:text-left">
-              {heroFooterQuote}
+              {heroCopy.footer}
             </p>
 
             <Link
               href="/products"
-              className="group flex shrink-0 items-center gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              className="group focus-visible:outline-brand-primary flex shrink-0 items-center gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-              <p className="text-xs font-bold tracking-wide text-cyan-300 uppercase">DISCOVER MEDSIM</p>
+              <p className="text-brand-primary text-xs font-bold tracking-wide uppercase">DISCOVER MEDSIM</p>
 
-              <IconWrapper
+              <Icon
                 path={ICON_PATHS.arrowDown}
-                className="h-5 w-auto text-cyan-300 transition-transform group-hover:translate-y-1"
+                className="text-brand-primary h-5 w-auto transition-transform group-hover:translate-y-1"
               />
             </Link>
           </div>
         </footer>
       </div>
-      <SiteCopyright />
     </section>
   );
 }

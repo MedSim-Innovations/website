@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: siteConfig.url,
       changeFrequency: "monthly",
       priority: 1,
-      images: [`${siteConfig.url}/hero.jpg`, `${siteConfig.url}/Collaborative%20Medical%20Simulation%20Training.png`],
+      images: [`${siteConfig.url}/hero.jpg`, `${siteConfig.url}/collaborative-medical-simulation-training.png`],
     },
     {
       url: `${siteConfig.url}/products`,
@@ -30,6 +30,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}/contact`,
       changeFrequency: "yearly",
       priority: 0.7,
+    },
+    {
+      url: `${siteConfig.url}/privacy`,
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 }

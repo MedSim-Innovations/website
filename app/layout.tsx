@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto_Serif } from "next/font/google";
-import { siteConfig } from "@/lib/site";
+import { siteConfig } from "@/content/site";
 import "./globals.css";
 
 const robotoSerif = Roboto_Serif({
@@ -68,7 +68,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${robotoSerif.className} h-full antialiased`}>
-      <body className="h-full overflow-hidden">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

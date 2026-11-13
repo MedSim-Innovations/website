@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import SiteShell from "@/components/layout/site-shell";
-import Hero from "@/components/sections/hero";
-import LegacyHashRedirect from "@/components/routing/legacy-hash-redirect";
-import { products } from "@/data/products";
-import { siteConfig } from "@/lib/site";
+import HomePageContent from "@/components/pages/home-page";
+import { products } from "@/content/products";
+import { siteConfig } from "@/content/site";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -65,9 +64,8 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
-      <LegacyHashRedirect />
       <SiteShell>
-        <Hero />
+        <HomePageContent />
       </SiteShell>
     </>
   );

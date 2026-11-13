@@ -9,6 +9,7 @@ updates:
       timezone: "America/Vancouver"
     target-branch: "development"
     open-pull-requests-limit: 5
+    rebase-strategy: "auto"
     groups:
       next-and-react:
         patterns: ["next", "react", "react-dom", "eslint-config-next"]
@@ -16,3 +17,17 @@ updates:
         dependency-type: "development"
         exclude-patterns: ["next", "react", "react-dom", "eslint-config-next"]
     versioning-strategy: increase
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:30"
+      timezone: "America/Vancouver"
+    target-branch: "development"
+    open-pull-requests-limit: 3
+    rebase-strategy: "auto"
+    groups:
+      github-actions:
+        patterns: ["*"]

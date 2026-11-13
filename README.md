@@ -35,19 +35,19 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Commands
 
-| Command                | Description                                 |
-| ---------------------- | ------------------------------------------- |
-| `npm run dev`          | Start the development server.               |
-| `npm run format`       | Format source files with Prettier.          |
-| `npm run format:check` | Verify source formatting.                   |
-| `npm run lint`         | Run ESLint.                                 |
-| `npm run build`        | Create and type-check the production build. |
-| `npm run start`        | Serve the production build.                 |
-| `npm run deps:check`   | Check dependency version consistency.       |
-| `npm run typecheck`    | Run TypeScript without emitting files.      |
-| `npm run audit`        | Audit production dependencies.              |
-| `npm run test`         | Run browser and accessibility tests.        |
-| `npm run check`        | Run the complete pre-release quality gate.  |
+| Command                | Description                                    |
+| ---------------------- | ---------------------------------------------- |
+| `npm run dev`          | Start the development server.                  |
+| `npm run format`       | Format source files with Prettier.             |
+| `npm run format:check` | Verify source formatting.                      |
+| `npm run lint`         | Run ESLint.                                    |
+| `npm run build`        | Create and type-check the production build.    |
+| `npm run start`        | Serve the production build.                    |
+| `npm run deps:check`   | Check dependency version consistency.          |
+| `npm run typecheck`    | Run TypeScript without emitting files.         |
+| `npm run audit`        | Audit production and development dependencies. |
+| `npm run test`         | Run browser and accessibility tests.           |
+| `npm run check`        | Run the complete pre-release quality gate.     |
 
 Before merging a change, run:
 
@@ -59,31 +59,29 @@ npm run check
 
 ```text
 app/                   Routes, metadata, error states and SEO files
-components/feedback/   Branded not-found and error-state presentation
 components/layout/     Application shell, navigation and shared page chrome
-components/sections/   Home, products, services, story and contact sections
+components/pages/      Page-level presentation grouped in one predictable place
 components/ui/         Low-level reusable interface primitives
-constants/             Shared types and navigation data
-data/                  Product and story content
-lib/                   Site-wide configuration
+content/               Site configuration, approved copy and catalogue content
+lib/                   Framework-facing metadata helpers
 public/about-us/        Story imagery
 public/products/        Product imagery
 tests/e2e/              Browser, responsive and accessibility tests
 .github/                CI, dependency updates and contribution templates
 ```
 
-The website uses real App Router pages at `/`, `/products`, `/services`, `/story` and `/contact`. Shared page chrome is assembled in `components/layout/site-shell.tsx`. Each page owns its scroll area and places the copyright notice after its full content rather than fixing it to the viewport. A small compatibility component redirects legacy hash links such as `/#products` to their current routes.
+The website uses conventional App Router pages at `/`, `/products`, `/services`, `/story`, `/contact` and `/privacy`. Route files stay thin: they own metadata and compose the page from `components/pages/`. Shared page chrome is assembled in `components/layout/site-shell.tsx`, while the browser document owns vertical scrolling.
 
-The application also includes branded loading, not-found, route-error and global-error states. The Contact section provides an embedded map and a direct Google Maps link.
+The application also includes branded loading, not-found, route-error and global-error states. The Contact page uses a lazy-loaded Google Maps embed with a separate link for opening directions.
 
 ## Content and assets
 
 - Keep factual claims aligned with approved company source material.
 - Store optimized public assets under `public/` with descriptive filenames.
 - Preserve useful alternative text and confirm publication rights before adding media.
-- Product card imagery is mapped in `data/products.ts`.
-- Shared business identity, canonical domain and contact details are stored in `lib/site.ts`.
-- Update the explicit copyright year in `components/layout/footer.tsx` when required.
+- Product card imagery and its types are maintained together in `content/products.ts`.
+- Shared business identity, canonical domain and contact details are stored in `content/site.ts`.
+- The copyright year in `components/layout/site-footer.tsx` is generated at build time.
 
 ## Branch and release workflow
 
@@ -98,7 +96,24 @@ Repository rules should require the CI workflow for pull requests and prevent di
 
 The target is WCAG 2.2 level AA. The automated suite checks all public routes in desktop and mobile Chromium with Axe, but automation is not a substitute for manual review. Visual or interactive changes should also be tested with keyboard-only navigation, browser zoom/reflow, reduced motion, and a screen reader.
 
+The accessibility approach and latest manual review status are documented in [ACCESSIBILITY.md](ACCESSIBILITY.md).
+
 The production response includes a Content Security Policy, HSTS, frame restrictions, MIME sniffing protection, a referrer policy, and a permissions policy. Validate these headers in the deployed environment after infrastructure changes.
+
+### Browser tests
+
+Playwright configuration lives in `playwright.config.ts`. The suite runs against a production build in desktop and mobile Chromium and covers:
+
+- Every public route and primary heading
+- Product search and category filters
+- Mobile-menu keyboard behavior
+- Security response headers
+- Conventional document scrolling
+- 320 CSS-pixel reflow, equivalent to a 1280-pixel viewport at 400% zoom
+- Accessible contact methods, Google Maps embed and directions link
+- Automated WCAG 2.2 AA checks with Axe
+
+Install the browser once with `npx playwright install chromium`, then use `npm run test`. Failure screenshots, traces and the HTML report are ignored by Git and uploaded by CI for review.
 
 ## Deployment
 
@@ -117,6 +132,6 @@ After deployment:
 1. Confirm the canonical domain, HTTPS redirect, caching and security headers.
 2. Submit `https://www.medsiminnovations.com/sitemap.xml` to Google Search Console and Bing Webmaster Tools.
 3. Test the Open Graph preview and organization structured data against the live URL.
-4. Verify the contact links, map embed and all product images from the production region.
+4. Verify the contact links, Google Maps embed, directions link and all product images from the production region.
 5. Run keyboard and screen-reader smoke tests against the deployed pages.
-6. Confirm monitoring and rollback procedures with the hosting provider.
+6. Confirm the hosting rollback procedure before promotion.

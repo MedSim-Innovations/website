@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import StatusPage from "@/components/feedback/status-page";
+import StatusPage from "@/components/ui/status-page";
 
 export default function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {

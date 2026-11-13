@@ -1,5 +1,5 @@
 import SiteShell from "@/components/layout/site-shell";
-import Products from "@/components/sections/products";
+import ProductsPageContent from "@/components/pages/products-page";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 export default function ProductsPage() {
   return (
     <SiteShell>
-      <Products />
+      <ProductsPageContent />
     </SiteShell>
   );
 }

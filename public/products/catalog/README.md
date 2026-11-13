@@ -19,4 +19,4 @@ Use WebP images at a recommended size of 1600 × 1000 pixels:
 - `nursekit-pro.webp`
 - `student-faculty-uniforms.webp`
 
-If you prefer a different filename or format, update the corresponding `image` value in `data/products.ts`.
+If you prefer a different filename or format, update the corresponding `image` value in `content/products.ts`.

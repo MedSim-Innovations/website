@@ -1,28 +1,27 @@
 "use client";
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { productCategories, products } from "@/data/products";
-import type { Product, ProductCategoryId } from "@/constants/types";
-import SiteCopyright from "@/components/layout/footer";
+import { productCategories, products, type Product, type ProductCategoryId } from "@/content/products";
+import PageContainer from "@/components/ui/page-container";
 
 const accentStyles = {
   cyan: {
-    border: "group-hover:border-cyan-300/50",
-    glow: "bg-cyan-300/15",
-    text: "text-cyan-300",
-    line: "from-cyan-300",
+    border: "group-hover:border-brand-primary/50",
+    glow: "bg-brand-primary/15",
+    text: "text-brand-primary",
+    line: "from-brand-primary",
   },
   lime: {
-    border: "group-hover:border-lime-300/50",
-    glow: "bg-lime-300/15",
-    text: "text-lime-300",
-    line: "from-lime-300",
+    border: "group-hover:border-brand-secondary/50",
+    glow: "bg-brand-secondary/15",
+    text: "text-brand-secondary",
+    line: "from-brand-secondary",
   },
   yellow: {
-    border: "group-hover:border-yellow-300/50",
-    glow: "bg-yellow-300/15",
-    text: "text-yellow-300",
-    line: "from-yellow-300",
+    border: "group-hover:border-brand-highlight/50",
+    glow: "bg-brand-highlight/15",
+    text: "text-brand-highlight",
+    line: "from-brand-highlight",
   },
 };
 
@@ -78,7 +77,7 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
-export default function Products() {
+export default function ProductsPageContent() {
   const [category, setCategory] = useState<ProductCategoryId>("all");
   const [query, setQuery] = useState("");
   const categoryCounts = useMemo(
@@ -103,15 +102,15 @@ export default function Products() {
     );
   }, [category, query]);
   return (
-    <section tabIndex={0} className="section-scroll h-full overflow-y-auto bg-black focus-visible:outline-none">
-      <div className="mx-auto min-h-full w-full max-w-[1700px] px-5 pt-10 pb-16 sm:px-8 sm:pt-14 lg:px-12 2xl:px-16">
+    <section className="min-h-[calc(100dvh-5rem)] bg-black">
+      <PageContainer className="pt-10 pb-16 sm:pt-14">
         <header className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <p className="text-xs font-bold tracking-[.22em] text-cyan-300 uppercase">02 / Products & solutions</p>
+            <p className="text-brand-primary text-xs font-bold tracking-[.22em] uppercase">02 / Products & solutions</p>
             <h1 className="mt-4 max-w-4xl text-4xl leading-[1.02] font-semibold tracking-[-.045em] text-balance sm:text-6xl xl:text-7xl">
               Designed for practice.
               <br />
-              <span className="text-cyan-300">Built for progress.</span>
+              <span className="text-brand-primary">Built for progress.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-neutral-400 sm:text-base">
               Explore practical procedure kits, institutional lab solutions, learning resources and essentials for the
@@ -137,7 +136,7 @@ export default function Products() {
                     type="button"
                     onClick={() => setCategory(item.id)}
                     aria-pressed={category === item.id}
-                    className={`shrink-0 rounded-full border px-4 py-2 text-xs font-semibold transition focus-visible:outline-2 focus-visible:outline-cyan-300 ${category === item.id ? "border-cyan-300 bg-cyan-300 text-black" : "border-white/15 bg-white/[.03] text-neutral-400 hover:border-white/30 hover:text-white"}`}
+                    className={`focus-visible:outline-brand-primary shrink-0 rounded-full border px-4 py-2 text-xs font-semibold transition focus-visible:outline-2 ${category === item.id ? "border-brand-primary bg-brand-primary text-black" : "border-white/15 bg-white/[.03] text-neutral-400 hover:border-white/30 hover:text-white"}`}
                   >
                     {item.label}{" "}
                     <span className={`${category === item.id ? "text-black/70" : "text-neutral-400"} ml-2`}>
@@ -156,7 +155,7 @@ export default function Products() {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search name, use or feature"
-                  className="h-10 w-full rounded-full border border-white/15 bg-white/[.04] pr-20 pl-10 text-sm text-white outline-none placeholder:text-neutral-400 focus:border-cyan-300/70 [&::-webkit-search-cancel-button]:hidden"
+                  className="focus:border-brand-primary/70 h-10 w-full rounded-full border border-white/15 bg-white/[.04] pr-20 pl-10 text-sm text-white outline-none placeholder:text-neutral-400 [&::-webkit-search-cancel-button]:hidden"
                 />
                 {query && (
                   <button
@@ -195,15 +194,14 @@ export default function Products() {
                   setCategory("all");
                   setQuery("");
                 }}
-                className="mt-5 text-sm font-bold text-cyan-300"
+                className="text-brand-primary mt-5 text-sm font-bold"
               >
                 Clear filters
               </button>
             </div>
           </div>
         )}
-      </div>
-      <SiteCopyright />
+      </PageContainer>
     </section>
   );
 }

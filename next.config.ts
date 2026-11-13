@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const scriptSources = ["'self'", "'unsafe-inline'"];
+// Turbopack evaluates development modules dynamically; production never receives unsafe-eval.
 if (process.env.NODE_ENV === "development") scriptSources.push("'unsafe-eval'");
 
 const nextConfig: NextConfig = {

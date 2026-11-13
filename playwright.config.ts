@@ -2,6 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 const port = 3100;
 
+// Tests run against the optimized server so local and CI behavior match the deployment artifact.
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
@@ -15,7 +16,11 @@ export default defineConfig({
     screenshot: "only-on-failure",
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    {
+      name: "chromium",
+      testIgnore: "**/*.mobile.spec.ts",
+      use: { ...devices["Desktop Chrome"] },
+    },
     { name: "mobile-chromium", use: { ...devices["Pixel 7"] } },
   ],
   webServer: {

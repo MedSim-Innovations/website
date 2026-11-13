@@ -1,6 +1,6 @@
 {
   "name": "medsim-innovations-website",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Public website for MedSim Innovations Private Limited.",
   "license": "UNLICENSED",
   "engines": {
@@ -27,9 +27,14 @@
     "tailwindcss": "^4",
     "typescript": "^6.0.3"
   },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.1"
+    }
+  },
   "private": true,
   "scripts": {
-    "audit": "npm audit --omit=dev",
+    "audit": "npm audit",
     "build": "next build",
     "check": "npm run format:check && npm run lint && npm run typecheck && npm run deps:check && npm run build && npm run test:e2e && npm run audit",
     "deps:check": "syncpack lint --dependency-types prod,dev",
