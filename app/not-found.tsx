@@ -1,4 +1,4 @@
-import StatusPage from "@/components/feedback/status-page";
+import StatusPage from "@/components/ui/status-page";
 
 export default function NotFoundPage() {
   return (

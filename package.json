@@ -1,6 +1,6 @@
 {
   "name": "medsim-innovations-website",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Public website for MedSim Innovations Private Limited.",
   "license": "UNLICENSED",
   "engines": {
@@ -13,23 +13,30 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^10",
+    "eslint": "^9.39.5",
     "eslint-config-next": "16.4.6",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "syncpack": "^15.3.3",
     "tailwindcss": "^4",
-    "typescript": "^7"
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.1"
+    }
   },
   "private": true,
   "scripts": {
-    "audit": "npm audit --omit=dev",
+    "audit": "npm audit",
     "build": "next build",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run deps:check && npm run build && npm run audit",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run deps:check && npm run build && npm run test:e2e && npm run audit",
     "deps:check": "syncpack lint --dependency-types prod,dev",
     "deps:fix": "syncpack fix --dependency-types prod,dev",
     "deps:patch": "syncpack update --interactive --target patch",
@@ -41,6 +48,8 @@
     "lint:fix": "eslint . --fix",
     "show:deps": "syncpack list --show all",
     "start": "next start",
+    "test": "npm run test:e2e",
+    "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit"
   }
 }

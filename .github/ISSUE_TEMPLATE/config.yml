@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Product and business enquiries
+    url: https://www.medsiminnovations.com/contact
+    about: Contact the company rather than opening a public repository issue.

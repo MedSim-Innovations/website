@@ -1,5 +1,5 @@
 import SiteShell from "@/components/layout/site-shell";
-import Contact from "@/components/sections/contact";
+import ContactPageContent from "@/components/pages/contact-page";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 export default function ContactPage() {
   return (
     <SiteShell>
-      <Contact />
+      <ContactPageContent />
     </SiteShell>
   );
 }

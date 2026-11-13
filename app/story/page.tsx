@@ -1,5 +1,5 @@
 import SiteShell from "@/components/layout/site-shell";
-import OurStory from "@/components/sections/our-story";
+import StoryPageContent from "@/components/pages/story-page";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 export default function StoryPage() {
   return (
     <SiteShell>
-      <OurStory />
+      <StoryPageContent />
     </SiteShell>
   );
 }
