@@ -1,0 +1,46 @@
+{
+  "name": "medsim-innovations-website",
+  "version": "1.0.0",
+  "description": "Public website for MedSim Innovations Private Limited.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.9.0",
+    "npm": ">=10.0.0"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^26",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^10",
+    "eslint-config-next": "16.4.6",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "syncpack": "^15.3.3",
+    "tailwindcss": "^4",
+    "typescript": "^7"
+  },
+  "private": true,
+  "scripts": {
+    "audit": "npm audit --omit=dev",
+    "build": "next build",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run deps:check && npm run build && npm run audit",
+    "deps:check": "syncpack lint --dependency-types prod,dev",
+    "deps:fix": "syncpack fix --dependency-types prod,dev",
+    "deps:patch": "syncpack update --interactive --target patch",
+    "deps:update": "syncpack update --interactive",
+    "dev": "next dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "show:deps": "syncpack list --show all",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  }
+}
