@@ -16,6 +16,8 @@ The website presents procedure kits, nursing skills-lab solutions, student essen
 - React 19 and TypeScript
 - Tailwind CSS 4
 - ESLint and Prettier
+- Playwright and Axe accessibility testing
+- GitHub Actions continuous integration
 - Static metadata routes for robots, sitemap and the web manifest
 - JSON-LD organization and product-catalog structured data
 
@@ -25,6 +27,7 @@ Requires Node.js 20.9 or newer and npm 10 or newer.
 
 ```bash
 npm ci
+npx playwright install chromium
 npm run dev
 ```
 
@@ -43,6 +46,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run deps:check`   | Check dependency version consistency.       |
 | `npm run typecheck`    | Run TypeScript without emitting files.      |
 | `npm run audit`        | Audit production dependencies.              |
+| `npm run test`         | Run browser and accessibility tests.        |
 | `npm run check`        | Run the complete pre-release quality gate.  |
 
 Before merging a change, run:
@@ -64,6 +68,8 @@ data/                  Product and story content
 lib/                   Site-wide configuration
 public/about-us/        Story imagery
 public/products/        Product imagery
+tests/e2e/              Browser, responsive and accessibility tests
+.github/                CI, dependency updates and contribution templates
 ```
 
 The website uses real App Router pages at `/`, `/products`, `/services`, `/story` and `/contact`. Shared page chrome is assembled in `components/layout/site-shell.tsx`. Each page owns its scroll area and places the copyright notice after its full content rather than fixing it to the viewport. A small compatibility component redirects legacy hash links such as `/#products` to their current routes.
@@ -77,7 +83,22 @@ The application also includes branded loading, not-found, route-error and global
 - Preserve useful alternative text and confirm publication rights before adding media.
 - Product card imagery is mapped in `data/products.ts`.
 - Shared business identity, canonical domain and contact details are stored in `lib/site.ts`.
-- Update the explicit copyright year in `components/layout/site-copyright.tsx` when required.
+- Update the explicit copyright year in `components/layout/footer.tsx` when required.
+
+## Branch and release workflow
+
+- `production` contains the currently released website.
+- `development` is the integration branch for the next release.
+- Create focused branches from `development` and merge them through reviewed pull requests.
+- Promote a tested release from `development` to `production`, then create an annotated semantic-version tag and GitHub Release.
+
+Repository rules should require the CI workflow for pull requests and prevent direct, unsigned changes to `production`. See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [CHANGELOG.md](CHANGELOG.md).
+
+## Accessibility and quality
+
+The target is WCAG 2.2 level AA. The automated suite checks all public routes in desktop and mobile Chromium with Axe, but automation is not a substitute for manual review. Visual or interactive changes should also be tested with keyboard-only navigation, browser zoom/reflow, reduced motion, and a screen reader.
+
+The production response includes a Content Security Policy, HSTS, frame restrictions, MIME sniffing protection, a referrer policy, and a permissions policy. Validate these headers in the deployed environment after infrastructure changes.
 
 ## Deployment
 
@@ -93,7 +114,9 @@ Serve the production deployment over HTTPS and point the canonical domain to `ht
 
 After deployment:
 
-1. Confirm the canonical domain, HTTPS redirect and security headers.
+1. Confirm the canonical domain, HTTPS redirect, caching and security headers.
 2. Submit `https://www.medsiminnovations.com/sitemap.xml` to Google Search Console and Bing Webmaster Tools.
 3. Test the Open Graph preview and organization structured data against the live URL.
 4. Verify the contact links, map embed and all product images from the production region.
+5. Run keyboard and screen-reader smoke tests against the deployed pages.
+6. Confirm monitoring and rollback procedures with the hosting provider.
