@@ -1,18 +1,17 @@
 import SiteCopyright from "@/components/layout/footer";
+import { siteConfig } from "@/lib/site";
 
 const contactDetails = [
-  { label: "Business enquiries", value: "sales@medsiminnovations.com", href: "mailto:sales@medsiminnovations.com" },
-  { label: "Phone", value: "+91 997 146 6122", href: "tel:+919971466122" },
+  { label: "Business enquiries", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+  { label: "Phone", value: siteConfig.phoneDisplay, href: `tel:${siteConfig.phone}` },
 ];
-
-const mapEmbedUrl =
-  "https://www.google.com/maps?q=Lane%20Q%2C%20South%20City%20I%2C%20Gurugram%2C%20Haryana%2C%20India&output=embed";
-const mapDirectionsUrl =
-  "https://www.google.com/maps/search/?api=1&query=Lane%20Q%2C%20South%20City%20I%2C%20Gurugram%2C%20Haryana%2C%20India";
 
 export default function Contact() {
   return (
-    <section className="section-scroll relative h-full overflow-y-auto bg-black">
+    <section
+      tabIndex={0}
+      className="section-scroll relative h-full overflow-y-auto bg-black focus-visible:outline-none"
+    >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-40 size-[34rem] rounded-full bg-rose-600/10 blur-[120px]" />
         <div className="absolute -top-32 -right-40 size-[38rem] rounded-full bg-red-500/[.08] blur-[140px]" />
@@ -24,9 +23,7 @@ export default function Contact() {
           <h1 className="mt-5 max-w-4xl text-4xl leading-[1.02] font-semibold tracking-[-.045em] text-balance sm:text-6xl xl:text-7xl">
             Plan your next
             <br />
-            <span className="bg-linear-to-r from-rose-300 via-rose-500 to-red-400 bg-clip-text text-transparent">
-              simulation experience.
-            </span>
+            <span className="text-rose-300">simulation experience.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-sm leading-7 text-neutral-400 sm:text-base">
             Request product information, a quotation, a lab discussion or details about healthcare simulation and
@@ -34,7 +31,7 @@ export default function Contact() {
           </p>
           <div className="mt-10 flex items-center gap-3">
             <span className="h-px w-12 bg-rose-500" />
-            <span className="text-[10px] font-bold tracking-[.22em] text-rose-300/70 uppercase">
+            <span className="text-[10px] font-bold tracking-[.22em] text-rose-200 uppercase">
               Safer practice starts with a conversation
             </span>
           </div>
@@ -51,7 +48,7 @@ export default function Contact() {
               className="group flex items-center justify-between gap-4 border-b border-rose-300/15 p-7 transition hover:bg-rose-400/[.06] sm:p-9"
             >
               <span className="min-w-0">
-                <span className="block text-[10px] font-bold tracking-[.18em] text-rose-200/35 uppercase">
+                <span className="block text-[10px] font-bold tracking-[.18em] text-rose-200 uppercase">
                   {detail.label}
                 </span>
                 <span className="mt-2 block text-base break-all text-neutral-100 sm:text-lg sm:break-normal">
@@ -66,7 +63,7 @@ export default function Contact() {
               </span>
             </a>
           ))}
-          <p className="p-7 text-xs leading-6 text-rose-100/35 sm:p-9">
+          <p className="p-7 text-xs leading-6 text-rose-100 sm:p-9">
             Product specifications, configurations and service scope are confirmed during enquiry and quotation.
           </p>
         </div>
@@ -79,17 +76,17 @@ export default function Contact() {
               </h2>
             </div>
             <a
-              href={mapDirectionsUrl}
+              href={siteConfig.maps.directions}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg bg-rose-500 px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-rose-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-300"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg bg-rose-700 px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-rose-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-300"
             >
               Open in Google Maps <span aria-hidden="true">↗</span>
             </a>
           </div>
           <div className="relative h-80 bg-neutral-950 sm:h-96">
             <iframe
-              src={mapEmbedUrl}
+              src={siteConfig.maps.embed}
               title="Map showing MedSim Innovations in South City I, Gurugram"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

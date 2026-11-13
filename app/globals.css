@@ -18,6 +18,9 @@ a,
 input {
   -webkit-tap-highlight-color: transparent;
 }
+:focus-visible {
+  scroll-margin: 6rem;
+}
 ::selection {
   background: rgba(103, 232, 249, 0.25);
   color: #fff;

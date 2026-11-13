@@ -5,7 +5,7 @@ import SiteCopyright from "@/components/layout/footer";
 
 export default function OurStory() {
   return (
-    <section className="section-scroll h-full overflow-y-auto bg-black">
+    <section tabIndex={0} className="section-scroll h-full overflow-y-auto bg-black focus-visible:outline-none">
       <div className="mx-auto min-h-full w-full max-w-[1700px] px-5 pt-10 pb-20 sm:px-8 sm:pt-14 lg:px-12 2xl:px-16">
         <header className="grid gap-8 border-b border-white/10 pb-12 lg:grid-cols-[1fr_.85fr] lg:items-end">
           <div>
@@ -13,9 +13,7 @@ export default function OurStory() {
             <h1 className="mt-4 max-w-4xl text-4xl leading-[1.02] font-semibold tracking-[-.045em] text-balance sm:text-6xl xl:text-7xl">
               Training that moves
               <br />
-              <span className="bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text text-transparent">
-                care forward.
-              </span>
+              <span className="text-cyan-300">care forward.</span>
             </h1>
           </div>
           <p className="max-w-xl text-sm leading-7 text-neutral-400 sm:text-base lg:justify-self-end">
@@ -98,16 +96,16 @@ export default function OurStory() {
               <p className="text-xs font-bold tracking-[.2em] text-lime-300 uppercase">What we stand for</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-[-.035em] sm:text-5xl">Our value system</h2>
             </div>
-            <p className="max-w-md text-sm leading-6 text-neutral-500">
+            <p className="max-w-md text-sm leading-6 text-neutral-400">
               Principles that shape the products, programs and partnerships we build.
             </p>
           </div>
           <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 xl:grid-cols-4">
             {values.map((value, index) => (
               <article key={value.title} className="bg-[#080808] p-6 sm:p-8">
-                <p className="font-mono text-xs text-neutral-600">{String(index + 1).padStart(2, "0")}</p>
+                <p className="font-mono text-xs text-neutral-400">{String(index + 1).padStart(2, "0")}</p>
                 <h3 className="mt-8 text-xl font-semibold text-white">{value.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-500">{value.description}</p>
+                <p className="mt-3 text-sm leading-7 text-neutral-400">{value.description}</p>
               </article>
             ))}
           </div>
@@ -138,11 +136,14 @@ export default function OurStory() {
                 <div className="p-6 sm:p-8">
                   <div className="flex items-start justify-between gap-4">
                     <h3 className="text-2xl font-semibold">{audience.title}</h3>
-                    <span className="text-neutral-700 transition group-hover:translate-x-1 group-hover:text-cyan-300">
+                    <span
+                      aria-hidden="true"
+                      className="text-neutral-400 transition group-hover:translate-x-1 group-hover:text-cyan-300"
+                    >
                       →
                     </span>
                   </div>
-                  <p className="mt-3 max-w-xl text-sm leading-7 text-neutral-500">{audience.description}</p>
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-neutral-400">{audience.description}</p>
                 </div>
               </article>
             ))}

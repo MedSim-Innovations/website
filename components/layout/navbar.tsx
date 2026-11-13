@@ -16,20 +16,43 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
-
-  // useEffect(() => {
-  //   setIsMenuOpen(false);
-  // }, [pathname]);
+  const mobileMenu = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const close = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isMenuOpen) {
+    if (!isMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const focusable = mobileMenu.current?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    );
+    focusable?.[0]?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
         setIsMenuOpen(false);
         menuButton.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
-    window.addEventListener("keydown", close);
-    return () => window.removeEventListener("keydown", close);
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isMenuOpen]);
 
   const contactActive = pathname === "/contact";
@@ -52,7 +75,7 @@ export default function Navbar() {
             >
               MedSim Innovations
             </span>
-            <span className="mt-1 hidden text-[10px] tracking-[.04em] text-neutral-500 sm:block xl:text-[11px]">
+            <span className="mt-1 hidden text-[10px] tracking-[.04em] text-neutral-400 sm:block xl:text-[11px]">
               Professional Training Solutions
             </span>
           </span>
@@ -80,7 +103,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             aria-current={contactActive ? "page" : undefined}
-            className={`group flex min-h-11 items-center gap-2 rounded-lg bg-rose-500 px-4 py-2.5 text-[13px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-rose-400 hover:shadow-[0_8px_30px_rgba(244,63,94,.25)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-400 xl:px-5 xl:text-sm ${contactActive ? "ring-2 ring-rose-300/50" : ""}`}
+            className={`group flex min-h-11 items-center gap-2 rounded-lg bg-rose-700 px-4 py-2.5 text-[13px] font-bold text-white transition hover:-translate-y-0.5 hover:bg-rose-600 hover:shadow-[0_8px_30px_rgba(244,63,94,.25)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-400 xl:px-5 xl:text-sm ${contactActive ? "ring-2 ring-rose-300/50" : ""}`}
           >
             Let&apos;s talk simulation
             <span
@@ -103,14 +126,22 @@ export default function Navbar() {
         >
           <span className="sr-only">Menu</span>
           <span aria-hidden="true" className="text-xl">
-            {isMenuOpen ? <IconWrapper path={ICON_PATHS.xMark} className="w-4 h-4" /> : <IconWrapper path={ICON_PATHS.barsStaggered} className="w-4 h-4" />}
+            {isMenuOpen ? (
+              <IconWrapper path={ICON_PATHS.xMark} className="h-4 w-4" />
+            ) : (
+              <IconWrapper path={ICON_PATHS.barsStaggered} className="h-4 w-4" />
+            )}
           </span>
         </button>
       </nav>
 
       <div
         id="mobile-navigation"
+        inert={!isMenuOpen}
         aria-hidden={!isMenuOpen}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
         className={`fixed inset-x-0 top-20 bottom-0 z-40 transition-[opacity,visibility] duration-300 xl:hidden ${isMenuOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
       >
         <button
@@ -121,6 +152,7 @@ export default function Navbar() {
           className="absolute inset-0 bg-black/75 backdrop-blur-sm"
         />
         <div
+          ref={mobileMenu}
           className={`absolute inset-y-0 right-0 flex w-[min(86vw,390px)] flex-col border-l border-white/10 bg-[#080808] shadow-[-25px_0_70px_rgba(0,0,0,.7)] transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <p className="border-b border-white/10 px-6 py-6 text-[11px] font-bold tracking-[.2em] text-lime-300 uppercase">
@@ -140,7 +172,7 @@ export default function Navbar() {
                   <span className="flex items-center gap-4">
                     <span className="text-[11px] font-bold text-cyan-400/70">{String(index + 1).padStart(2, "0")}</span>
                     <span>
-                      <span className="block text-[10px] tracking-[.16em] text-neutral-600 uppercase">
+                      <span className="block text-[10px] tracking-[.16em] text-neutral-400 uppercase">
                         {item.eyebrow}
                       </span>
                       <span className="text-lg font-semibold">{item.label}</span>
@@ -156,7 +188,7 @@ export default function Navbar() {
               href="/contact"
               onClick={() => setIsMenuOpen(false)}
               aria-current={contactActive ? "page" : undefined}
-              className="flex min-h-14 w-full items-center justify-center rounded-lg bg-rose-500 font-bold text-white transition hover:bg-rose-400 focus-visible:outline-2 focus-visible:outline-rose-300"
+              className="flex min-h-14 w-full items-center justify-center rounded-lg bg-rose-700 font-bold text-white transition hover:bg-rose-600 focus-visible:outline-2 focus-visible:outline-rose-300"
             >
               Let&apos;s talk simulation ↗
             </Link>

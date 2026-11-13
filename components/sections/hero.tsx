@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// Fonts
-import { Special_Gothic_Expanded_One } from "next/font/google";
-
 // Images
 import HeroImage from "@/public/hero.jpg";
 import SimulationImage from "@/public/Collaborative Medical Simulation Training.png";
@@ -12,13 +9,6 @@ import SimulationImage from "@/public/Collaborative Medical Simulation Training.
 import IconWrapper from "@/components/ui/icon-wrapper";
 import SiteCopyright from "@/components/layout/footer";
 import { ICON_PATHS } from "@/constants/icons";
-
-// Font configuration
-const specialGothicExpandedOne = Special_Gothic_Expanded_One({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 // Page content
 const heroTags = ["Ready procedure kits", "Complete lab setup", "Training & support"];
@@ -119,7 +109,10 @@ function CalloutCard({
 
 export default function Hero() {
   return (
-    <section className="section-scroll relative isolate flex h-full w-full flex-col overflow-x-hidden overflow-y-auto bg-black text-white">
+    <section
+      tabIndex={0}
+      className="section-scroll relative isolate flex h-full w-full flex-col overflow-x-hidden overflow-y-auto bg-black text-white focus-visible:outline-none"
+    >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <Image src={HeroImage} alt="" fill priority sizes="100vw" className="object-cover object-center" />
 
@@ -140,9 +133,7 @@ export default function Hero() {
               ))}
             </div>
 
-            <h1
-              className={`mt-7 max-w-175 bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text pb-2 text-[clamp(2.7rem,7vw,5rem)] leading-[1.12] text-transparent xl:text-[clamp(2.7rem,4vw,4.75rem)] capitalize ${specialGothicExpandedOne.className} `}
-            >
+            <h1 className="mt-7 max-w-175 bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text pb-2 text-[clamp(2.7rem,7vw,5rem)] leading-[1.12] font-semibold tracking-[-.035em] text-transparent capitalize xl:text-[clamp(2.7rem,4vw,4.75rem)]">
               {heroQuote}
             </h1>
 

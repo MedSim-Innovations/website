@@ -103,7 +103,7 @@ export default function Products() {
     );
   }, [category, query]);
   return (
-    <section className="section-scroll h-full overflow-y-auto bg-black">
+    <section tabIndex={0} className="section-scroll h-full overflow-y-auto bg-black focus-visible:outline-none">
       <div className="mx-auto min-h-full w-full max-w-[1700px] px-5 pt-10 pb-16 sm:px-8 sm:pt-14 lg:px-12 2xl:px-16">
         <header className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
@@ -111,9 +111,7 @@ export default function Products() {
             <h1 className="mt-4 max-w-4xl text-4xl leading-[1.02] font-semibold tracking-[-.045em] text-balance sm:text-6xl xl:text-7xl">
               Designed for practice.
               <br />
-              <span className="bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text text-transparent">
-                Built for progress.
-              </span>
+              <span className="text-cyan-300">Built for progress.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-neutral-400 sm:text-base">
               Explore practical procedure kits, institutional lab solutions, learning resources and essentials for the
@@ -122,7 +120,7 @@ export default function Products() {
           </div>
           <div className="hidden text-right lg:block">
             <p className="font-mono text-3xl text-white">{String(filtered.length).padStart(2, "0")}</p>
-            <p className="mt-1 text-[10px] tracking-[.18em] text-neutral-500 uppercase">Solutions shown</p>
+            <p className="mt-1 text-[10px] tracking-[.18em] text-neutral-400 uppercase">Solutions shown</p>
           </div>
         </header>
         <div className="sticky top-0 z-20 -mx-5 border-b border-white/10 bg-black/90 px-5 py-4 backdrop-blur-xl sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12 2xl:-mx-16 2xl:px-16">
@@ -142,15 +140,15 @@ export default function Products() {
                     className={`shrink-0 rounded-full border px-4 py-2 text-xs font-semibold transition focus-visible:outline-2 focus-visible:outline-cyan-300 ${category === item.id ? "border-cyan-300 bg-cyan-300 text-black" : "border-white/15 bg-white/[.03] text-neutral-400 hover:border-white/30 hover:text-white"}`}
                   >
                     {item.label}{" "}
-                    <span className={`${category === item.id ? "text-black/55" : "text-neutral-600"} ml-2`}>
+                    <span className={`${category === item.id ? "text-black/70" : "text-neutral-400"} ml-2`}>
                       {categoryCounts[item.id]}
                     </span>
                   </button>
                 ))}
               </div>
               <label className="relative block md:w-80">
-                <span className="sr-only">Search products</span>
-                <span aria-hidden="true" className="absolute top-1/2 left-4 -translate-y-1/2 text-neutral-500">
+                <span className="sr-only">Search products and solutions</span>
+                <span aria-hidden="true" className="absolute top-1/2 left-4 -translate-y-1/2 text-neutral-400">
                   🔍
                 </span>
                 <input
@@ -158,7 +156,7 @@ export default function Products() {
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   placeholder="Search name, use or feature"
-                  className="h-10 w-full rounded-full border border-white/15 bg-white/[.04] pr-20 pl-10 text-sm text-white outline-none placeholder:text-neutral-600 focus:border-cyan-300/70 [&::-webkit-search-cancel-button]:hidden"
+                  className="h-10 w-full rounded-full border border-white/15 bg-white/[.04] pr-20 pl-10 text-sm text-white outline-none placeholder:text-neutral-400 focus:border-cyan-300/70 [&::-webkit-search-cancel-button]:hidden"
                 />
                 {query && (
                   <button
@@ -166,13 +164,17 @@ export default function Products() {
                     onClick={() => setQuery("")}
                     className="absolute top-1/2 right-4 -translate-y-1/2 text-xs font-semibold text-neutral-400 hover:text-white"
                   >
-                    Clear
+                    <span className="sr-only">Clear product search</span>
+                    <span aria-hidden="true">Clear</span>
                   </button>
                 )}
               </label>
             </div>
-            <p className="mt-3 text-[11px] tracking-[.14em] text-neutral-600 uppercase md:hidden">
+            <p className="mt-3 text-[11px] tracking-[.14em] text-neutral-400 uppercase md:hidden" aria-hidden="true">
               {filtered.length} {filtered.length === 1 ? "solution" : "solutions"} shown
+            </p>
+            <p className="sr-only" role="status" aria-live="polite">
+              {filtered.length} {filtered.length === 1 ? "solution" : "solutions"} found
             </p>
           </div>
         </div>
@@ -186,7 +188,7 @@ export default function Products() {
           <div className="grid min-h-72 place-items-center pt-8 text-center">
             <div>
               <p className="text-lg font-semibold">No products found</p>
-              <p className="mt-2 text-sm text-neutral-500">Try another category or search term.</p>
+              <p className="mt-2 text-sm text-neutral-400">Try another category or search term.</p>
               <button
                 type="button"
                 onClick={() => {

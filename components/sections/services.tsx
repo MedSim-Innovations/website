@@ -117,7 +117,7 @@ const engagementModels = ["Advisory", "Project consulting", "Program delivery", 
 
 export default function Services() {
   return (
-    <section className="section-scroll h-full overflow-y-auto bg-black">
+    <section tabIndex={0} className="section-scroll h-full overflow-y-auto bg-black focus-visible:outline-none">
       <div className="mx-auto min-h-full w-full max-w-[1700px] px-5 pt-10 pb-20 sm:px-8 sm:pt-14 lg:px-12 2xl:px-16">
         <header className="relative overflow-hidden border-b border-white/10 pb-12">
           <div className="absolute -top-28 -right-24 size-80 rounded-full bg-yellow-300/10 blur-3xl" />
@@ -128,9 +128,7 @@ export default function Services() {
               <h1 className="mt-4 max-w-5xl text-4xl leading-[1.02] font-semibold tracking-[-.045em] text-balance sm:text-6xl xl:text-7xl">
                 From first idea to
                 <br />
-                <span className="bg-linear-to-r from-cyan-300 via-lime-300 to-yellow-300 bg-clip-text text-transparent">
-                  measured results.
-                </span>
+                <span className="text-cyan-300">measured results.</span>
               </h1>
             </div>
             <p className="max-w-xl text-sm leading-7 text-neutral-400 sm:text-base lg:justify-self-end">
@@ -156,7 +154,7 @@ export default function Services() {
                   <span className={`size-2 rounded-full ${style.dot}`} />
                 </div>
                 <h2 className="relative mt-8 text-2xl font-semibold tracking-[-.025em]">{service.title}</h2>
-                <p className="relative mt-3 text-sm leading-6 text-neutral-500">{service.description}</p>
+                <p className="relative mt-3 text-sm leading-6 text-neutral-400">{service.description}</p>
                 <ul className="relative mt-auto space-y-2 border-t border-white/10 pt-5">
                   {service.items.map((item) => (
                     <li key={item} className="flex gap-3 text-sm text-neutral-300">
@@ -202,7 +200,7 @@ export default function Services() {
                 className="rounded-2xl border border-white/10 bg-white/[.025] p-6 transition hover:border-rose-400/30 hover:bg-rose-400/[.035]"
               >
                 <h3 className="font-semibold text-white">{item.area}</h3>
-                <p className="mt-2 text-sm leading-6 text-neutral-500">{item.detail}</p>
+                <p className="mt-2 text-sm leading-6 text-neutral-400">{item.detail}</p>
               </article>
             ))}
           </div>
@@ -232,7 +230,7 @@ export default function Services() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-6 text-xs leading-6 text-neutral-500">
+                <p className="mt-6 text-xs leading-6 text-neutral-400">
                   2025 INACSL Best Practice Innovator Award recipient and its first Asian recipient.
                 </p>
               </div>
@@ -241,7 +239,7 @@ export default function Services() {
               {metrics.map(([value, label]) => (
                 <div key={label} className="bg-[#09181b] p-7 sm:p-9">
                   <p className="font-mono text-3xl text-cyan-300 sm:text-4xl">{value}</p>
-                  <p className="mt-3 text-xs tracking-[.14em] text-neutral-500 uppercase">{label}</p>
+                  <p className="mt-3 text-xs tracking-[.14em] text-neutral-400 uppercase">{label}</p>
                 </div>
               ))}
             </div>
@@ -261,7 +259,7 @@ export default function Services() {
                 <article key={item.step} className="bg-[#15140d] p-7 sm:p-9">
                   <p className="font-mono text-xs text-lime-300">0{index + 1}</p>
                   <h3 className="mt-7 text-2xl font-semibold">{item.step}</h3>
-                  <p className="mt-2 text-sm leading-6 text-neutral-500">{item.text}</p>
+                  <p className="mt-2 text-sm leading-6 text-neutral-400">{item.text}</p>
                 </article>
               ))}
             </div>
@@ -270,7 +268,7 @@ export default function Services() {
 
         <section className="mt-8 rounded-2xl border border-white/10 bg-white/[.025] p-6 sm:p-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            <p className="text-xs font-bold tracking-[.18em] text-neutral-500 uppercase">Ways to engage</p>
+            <p className="text-xs font-bold tracking-[.18em] text-neutral-400 uppercase">Ways to engage</p>
             <div className="flex flex-wrap gap-2">
               {engagementModels.map((model) => (
                 <span
