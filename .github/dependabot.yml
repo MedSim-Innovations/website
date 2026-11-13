@@ -16,6 +16,12 @@ updates:
       development-tooling:
         dependency-type: "development"
         exclude-patterns: ["next", "react", "react-dom", "eslint-config-next"]
+    ignore:
+      # Next.js 16's lint stack does not yet support these next major versions.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     versioning-strategy: increase
 
   - package-ecosystem: "github-actions"
